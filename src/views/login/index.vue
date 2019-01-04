@@ -21,18 +21,27 @@
         </span>
         <el-input
           v-model="form.password"
-          type="password"
+          :type="passwordType"
           :placeholder="$t('login.password')"
+          @keyup.enter.native="handleLogin"
         />
-        <span class="show-pwd">
+        <span class="show-pwd" @click="showPwd">
           <svg-icon icon-class="eye"/>
         </span>
       </el-form-item>
+      <el-button
+        type="primary"
+        style="width: 100%;"
+        :loading="loading"
+        @click="handleLogin">
+        {{$t('login.logIn')}}
+      </el-button>
     </el-form>
   </div>
 </template>
 
 <script>
+  import {isValidUserName} from 'utils/validate'
   import LangSelect from 'components/LangSelect'
 
   export default {
@@ -40,12 +49,48 @@
       LangSelect
     },
     data() {
+      const validateUserName = (rule, value, callback) => {
+        if (!isValidUserName(value)) {
+          callback(new Error('Please enter the correct user name'))
+        } else {
+          callback()
+        }
+      }
+      const validatePassword = (rule, value, callback) => {
+        if (value.length < 6) {
+          callback(new Error('The password can not be less than 6 digits'))
+        } else {
+          callback()
+        }
+      }
       return {
         form: {
           username: 'admin',
           password: '1111111'
         },
-        rules: {}
+        rules: {
+          username: [
+            {required: true, validator: validateUserName, trigger: 'blur'}
+          ],
+          password: [
+            {required: true, validator: validatePassword, trigger: 'blur'}
+          ]
+        },
+        passwordType: 'password',
+        loading: false
+      }
+    },
+    methods: {
+      showPwd() {
+        this.passwordType = this.passwordType === 'password' ? 'text' : 'password'
+      },
+      handleLogin() {
+        this.$refs.form.validate((valid) => {
+          if (valid) {
+            this.loading = true
+            console.log('login')
+          }
+        })
       }
     }
   }
@@ -89,7 +134,6 @@
       border-radius: 5px;
       border: 1px solid rgba(255, 255, 255, 0.1);
       background: rgba(0, 0, 0, 0.1);
-      color: #454545;
       .svg-wrapper {
         display: inline-block;
         vertical-align: middle;
@@ -101,6 +145,7 @@
         width: 85%;
         height: 47px;
         input {
+          // 目前不知道作用
           /*-webkit-appearance: none;*/
           border: none;
           border-radius: 0;
@@ -109,10 +154,10 @@
           background: transparent;
           color: $light_gray;
           caret-color: $cursor;
-          /*&:-webkit-autofill {
-            -webkit-box-shadow: 0 0 0px 1000px $bg_fill inset !important;
-            -webkit-text-fill-color: $cursor !important;
-          }*/
+          &:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px $bg_fill inset;
+            -webkit-text-fill-color: $cursor;
+          }
         }
         @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
           input {
