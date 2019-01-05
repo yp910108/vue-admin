@@ -85,12 +85,16 @@
         this.passwordType = this.passwordType === 'password' ? 'text' : 'password'
       },
       handleLogin() {
-        this.$refs.form.validate((valid) => {
+        this.$refs.form.validate(async (valid) => {
           if (valid) {
             this.loading = true
-            this.$store.dispatch('loginByUserName', this.form).then(() => {
-              console.log('success')
-            })
+            try {
+              await this.$store.dispatch('loginByUserName', this.form)
+              this.loading = false
+              this.$router.push('/')
+            } catch (e) {
+              this.loading = false
+            }
           }
         })
       }
