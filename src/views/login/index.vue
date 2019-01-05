@@ -88,7 +88,9 @@
         this.$refs.form.validate((valid) => {
           if (valid) {
             this.loading = true
-            console.log('login')
+            this.$store.dispatch('loginByUserName', this.form).then(() => {
+              console.log('success')
+            })
           }
         })
       }

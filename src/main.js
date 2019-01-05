@@ -9,6 +9,7 @@ import Cookies from 'js-cookie'
 import i18n from './lang'
 import './icons'
 import 'styles/index.scss'
+import './mock'
 
 Vue.use(Element, {
   size: Cookies.get('size') || 'medium',
