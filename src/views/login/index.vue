@@ -42,7 +42,7 @@
 
 <script>
   import {isValidUserName} from 'utils/validate'
-  import LangSelect from 'components/LangSelect'
+  import LangSelect from 'components/lang-select'
 
   export default {
     components: {
