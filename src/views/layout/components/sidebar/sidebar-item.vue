@@ -1,57 +1,48 @@
 <template>
-  <div v-if="!item.hidden && item.children">
+  <div v-if="visiable" class="menu-wrapper">
     <template
-      v-if="hasOneShowingChild(item.children, item) &&
-       (!onlyOneChild.children || onlyOneChild.noShowingChild) &&
-       !item.alwaysShow"
+      v-if="linkingChild
+      && (!linkingChild.children || !linkingChild.children.length)
+      && !item.alwaysShow"
     >
-      <app-link :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item
-          :index="resolvePath(onlyOneChild.path)"
-          :class="{'submenu-title-noDropdown': !isNest}"
-        >
+      <app-link :to="resolvePath(linkingChild.path)">
+        <el-menu-item :index="resolvePath(linkingChild.path)">
           <item
-            v-if="onlyOneChild.meta"
-            :icon="onlyOneChild.meta.icon || item.meta.icon"
-            :title="generateTitle(onlyOneChild.meta.title)"
-          />
+            v-if="linkingChild.meta"
+            :icon="linkingChild.meta.icon"
+            :title="generateTitle(linkingChild.meta.title)"
+          ></item>
         </el-menu-item>
       </app-link>
     </template>
-    <el-submenu
-      v-else
-      ref="submenu"
-      :index="resolvePath(item.path)"
-    >
+    <el-submenu v-else :index="resolvePath(item.path)">
       <template slot="title">
         <item
           v-if="item.meta"
           :icon="item.meta.icon"
           :title="generateTitle(item.meta.title)"
-        ></item>
+        />
       </template>
-      <template
-        v-for="child in item.children"
-        v-if="!child.hidden"
-      >
+      <template v-for="child in item.children" v-if="!child.hidden">
         <sidebar-item
-          v-if="child.children && child.children.length > 0"
-          :key="child.path"
-          :is-nest="true"
+          v-if="child.children && child.children.length"
+          :key="resolvePath(child.path)"
           :item="child"
           :base-path="resolvePath(child.path)"
         />
         <app-link
           v-else
-          :key="child.name"
+          :key="resolvePath(child.path)"
           :to="resolvePath(child.path)"
         >
-          <el-menu-item :index="resolvePath(child.path)">
+          <el-menu-item
+            :index="resolvePath(child.path)"
+          >
             <item
               v-if="child.meta"
               :icon="child.meta.icon"
               :title="generateTitle(child.meta.title)"
-            />
+            ></item>
           </el-menu-item>
         </app-link>
       </template>
@@ -73,10 +64,6 @@
         type: Object,
         required: true
       },
-      isNest: {
-        type: Boolean,
-        default: false
-      },
       basePath: {
         type: String,
         default: ''
@@ -87,32 +74,34 @@
       Item
     },
     data() {
-      return {
-        onlyOneChild: null
-      }
+      return {}
     },
     methods: {
-      hasOneShowingChild(children, parent) {
-        const showingChildren = children.filter((child) => {
-          return !child.hidden
-        })
-        if (showingChildren.length === 0) {
-          this.onlyOneChild = {...parent, path: '', noShowingChild: true}
-          return true
+      resolvePath(url) {
+        if (isExternal(url)) {
+          return url
         }
-        if (showingChildren.length === 1) {
-          this.onlyOneChild = children[0]
-          return true
-        }
-        return false
-      },
-      resolvePath(routePath) {
-        if (isExternal(routePath)) {
-          return routePath
-        }
-        return path.resolve(this.basePath, routePath)
+        return path.resolve(this.basePath, url)
       },
       generateTitle
+    },
+    computed: {
+      visiable() {
+        return !this.item.hidden && this.item.children && !!this.item.children.length
+      },
+      linkingChild() {
+        let {children} = this.item
+        let visiableChildren = children.filter((child) => {
+          return !child.hidden
+        })
+        if (!visiableChildren.length) {
+          return {...this.item, path: '', children: null}
+        }
+        if (visiableChildren.length === 1) {
+          return visiableChildren[0]
+        }
+        return null
+      }
     }
   }
 </script>
