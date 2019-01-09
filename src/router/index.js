@@ -37,7 +37,11 @@ export const constantRouterMap = [
     children: [
       {
         path: 'dashboard',
-        component: () => import('views/dashboard')
+        component: () => import('views/dashboard'),
+        meta: {
+          title: 'dashboard',
+          icon: 'dashboard'
+        }
       }
     ]
   },
@@ -48,7 +52,296 @@ export const constantRouterMap = [
     children: [
       {
         path: 'index',
-        component: () => import('views/documentation')
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation1',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation2',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation4',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation5',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation6',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation7',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation8',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation9',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation10',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation11',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation12',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation14',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation15',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation16',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation17',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation18',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation19',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation20',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation',
+          icon: 'documentation'
+        }
+      }
+    ]
+  },
+  {
+    path: '/documentation21',
+    component: Layout,
+    redirect: '/documentation/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('views/documentation'),
+        meta: {
+          title: 'documentation1',
+          icon: 'documentation'
+        }
       }
     ]
   }

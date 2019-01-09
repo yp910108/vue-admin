@@ -6,7 +6,10 @@
       && !item.alwaysShow"
     >
       <app-link :to="resolvePath(linkingChild.path)">
-        <el-menu-item :index="resolvePath(linkingChild.path)">
+        <el-menu-item
+          :index="resolvePath(linkingChild.path)"
+          :class="{'first-level': !isNest}"
+        >
           <item
             v-if="linkingChild.meta"
             :icon="linkingChild.meta.icon"
@@ -28,6 +31,7 @@
           v-if="child.children && child.children.length"
           :key="resolvePath(child.path)"
           :item="child"
+          :is-nest="true"
           :base-path="resolvePath(child.path)"
         />
         <app-link
@@ -63,6 +67,10 @@
       item: {
         type: Object,
         required: true
+      },
+      isNest: {
+        type: Boolean,
+        default: false
       },
       basePath: {
         type: String,

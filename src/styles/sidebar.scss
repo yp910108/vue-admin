@@ -1,0 +1,58 @@
+#app {
+  // 侧边栏
+  .sidebar-wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1001;
+    width: 180px;
+    transition: width .28s;
+    background: red;
+    overflow: hidden;
+    .scrollbar-wrapper {
+      overflow-x: hidden;
+      .el-scrollbar__view {
+        height: 100%;
+      }
+    }
+    .el-menu {
+      border: none;
+      height: 100%;
+      transition: all 1.28s;
+    }
+    a {
+      display: block;
+    }
+    .svg-icon {
+      margin-right: 16px;
+    }
+    .el-scrollbar__bar.is-vertical {
+      right: 0px;
+    }
+    .el-scrollbar__bar.is-horizontal {
+      display: none;
+    }
+  }
+  .hide-sidebar {
+    .sidebar-wrapper {
+      width: 36px;
+    }
+    .el-menu {
+      width: 100%;
+      .first-level {
+        padding-left: 10px !important;
+      }
+    }
+    .main-container {
+      margin-left: 36px;
+    }
+  }
+  // 主体区域
+  .main-container {
+    position: relative;
+    margin-left: 180px;
+    min-height: 100%;
+    transition: margin-left .28s;
+  }
+}

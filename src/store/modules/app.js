@@ -20,9 +20,9 @@ const app = {
       state.sidebar.opened = !state.sidebar.opened
       state.sidebar.withoutAnimation = false
       if (state.sidebar.opened) {
-        Cookies.set('sideBarStatus', 1)
+        Cookies.set('sidebarStatus', 1)
       } else {
-        Cookies.set('sideBarStatus', 0)
+        Cookies.set('sidebarStatus', 0)
       }
     },
     CLOSE_SIDEBAR(state, withoutAnimation) {

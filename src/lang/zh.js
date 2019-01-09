@@ -4,5 +4,9 @@ export default {
     logIn: '登录',
     username: '账号',
     password: '密码'
+  },
+  route: {
+    dashboard: '首页',
+    documentation: '文档'
   }
 }

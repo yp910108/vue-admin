@@ -4,5 +4,10 @@ export default {
     logIn: 'Log in',
     username: 'Username',
     password: 'Password'
+  },
+  route: {
+    dashboard: 'Dashboard',
+    documentation: 'Documentation',
+    documentation1: 'end'
   }
 }
