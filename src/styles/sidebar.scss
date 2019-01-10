@@ -7,20 +7,19 @@
     bottom: 0;
     z-index: 1001;
     width: 180px;
-    transition: width .28s;
-    background: red;
     overflow: hidden;
+    transition: width .3s ease-in-out;
     .scrollbar-wrapper {
       overflow-x: hidden;
-      .el-scrollbar__view {
-        height: 100%;
-      }
     }
     .el-menu {
       border: none;
       height: 100%;
-      transition: all 1.28s;
+      &:not(.el-menu--collapse) {
+        width: 180px;
+      }
     }
+
     a {
       display: block;
     }
@@ -41,7 +40,10 @@
     .el-menu {
       width: 100%;
       .first-level {
-        padding-left: 10px !important;
+        padding: 0 0 0 10px !important;
+        .el-tooltip {
+          padding: 0 0 0 10px !important;
+        }
       }
     }
     .main-container {
@@ -53,6 +55,6 @@
     position: relative;
     margin-left: 180px;
     min-height: 100%;
-    transition: margin-left .28s;
+    transition: margin-left .3s ease-in-out;
   }
 }
