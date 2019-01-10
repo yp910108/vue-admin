@@ -25,10 +25,10 @@ const app = {
         Cookies.set('sidebarStatus', 0)
       }
     },
-    CLOSE_SIDEBAR(state, withoutAnimation) {
+    CLOSE_SIDEBAR(state, withoutAnimation = false) {
       state.sidebar.opened = false
-      Cookies.set('sideBarStatus', 0)
       state.sidebar.withoutAnimation = withoutAnimation
+      Cookies.set('sidebarStatus', 0)
     }
   },
   actions: {
@@ -42,7 +42,7 @@ const app = {
     toggleSidebar({commit}) {
       commit('TOGGLE_SIDEBAR')
     },
-    closeSideBar({commit}, {withoutAnimation}) {
+    closeSidebar({commit}, {withoutAnimation} = {}) {
       commit('CLOSE_SIDEBAR', withoutAnimation)
     }
   }

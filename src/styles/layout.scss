@@ -1,4 +1,5 @@
-#app {
+.app-wrapper {
+  height: 100%;
   // 侧边栏
   .sidebar-wrapper {
     position: fixed;
@@ -9,7 +10,7 @@
     width: 180px;
     overflow: hidden;
     transition: width .3s ease-in-out;
-    .scrollbar-wrapper {
+    .el-scrollbar__wrap {
       overflow-x: hidden;
     }
     .el-menu {
@@ -33,7 +34,43 @@
       display: none;
     }
   }
-  .hide-sidebar {
+  // 主体区域
+  .main-container {
+    position: relative;
+    margin-left: 180px;
+    min-height: 100%;
+    transition: margin-left .3s ease-in-out;
+  }
+  // 适配移动端
+  &.mobile {
+    .drawer-bg {
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+    .sidebar-wrapper {
+      transition: transform .3s ease-in-out;
+    }
+    &.without-animation {
+      .sidebar-wrapper,
+      .main-container {
+        transition: none;
+      }
+    }
+    .main-container {
+      margin-left: 0;
+    }
+    &.hide-sidebar {
+      .sidebar-wrapper {
+        transform: translate3d(-180px, 0, 0);
+      }
+    }
+  }
+  &.hide-sidebar:not(.mobile) {
     .sidebar-wrapper {
       width: 36px;
     }
@@ -49,12 +86,5 @@
     .main-container {
       margin-left: 36px;
     }
-  }
-  // 主体区域
-  .main-container {
-    position: relative;
-    margin-left: 180px;
-    min-height: 100%;
-    transition: margin-left .3s ease-in-out;
   }
 }

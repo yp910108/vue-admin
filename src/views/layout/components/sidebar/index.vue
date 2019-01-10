@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar wrap-class="scrollbar-wrapper">
+  <el-scrollbar>
     <el-menu
       background-color="#304156"
       text-color="#bfcbd9"
@@ -27,11 +27,15 @@
     },
     computed: {
       ...mapGetters([
+        'device',
         'sidebar',
         'permission_routers'
       ]),
+      mobile() {
+        return this.device === 'mobile'
+      },
       isCollapse() {
-        return !this.sidebar.opened
+        return !this.mobile && !this.sidebar.opened
       }
     }
   }
