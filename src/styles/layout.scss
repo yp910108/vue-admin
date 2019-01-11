@@ -55,12 +55,6 @@
     .sidebar-wrapper {
       transition: transform .3s ease-in-out;
     }
-    &.without-animation {
-      .sidebar-wrapper,
-      .main-container {
-        transition: none;
-      }
-    }
     .main-container {
       margin-left: 0;
     }
@@ -68,6 +62,12 @@
       .sidebar-wrapper {
         transform: translate3d(-180px, 0, 0);
       }
+    }
+  }
+  &.without-animation {
+    .sidebar-wrapper,
+    .main-container {
+      transition: none;
     }
   }
   &.hide-sidebar:not(.mobile) {
