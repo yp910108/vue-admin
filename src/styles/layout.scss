@@ -83,6 +83,12 @@
           padding: 0 0 0 10px !important;
         }
       }
+      .el-submenu__title {
+        padding: 0 0 0 10px !important;
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
     }
     .main-container {
       margin-left: 36px;
