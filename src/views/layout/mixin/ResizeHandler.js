@@ -1,5 +1,5 @@
 const {body} = document
-const WIDTH = 800
+const WIDTH = 500
 
 export default {
   methods: {

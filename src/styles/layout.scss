@@ -8,8 +8,9 @@
     bottom: 0;
     z-index: 1001;
     width: 180px;
-    overflow: hidden;
+    background: #304156;
     transition: width .3s ease-in-out;
+    overflow: hidden;
     .el-scrollbar__wrap {
       overflow-x: hidden;
     }

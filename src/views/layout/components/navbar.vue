@@ -1,16 +1,19 @@
 <template>
   <div class="navbar">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
+    <breadcrumb/>
   </div>
 </template>
 
 <script>
   import {mapGetters} from 'vuex'
   import Hamburger from 'components/hamburger'
+  import Breadcrumb from 'components/Breadcrumb'
 
   export default {
     components: {
-      Hamburger
+      Hamburger,
+      Breadcrumb
     },
     methods: {
       toggleSideBar() {

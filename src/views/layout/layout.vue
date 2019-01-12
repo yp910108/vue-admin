@@ -7,6 +7,7 @@
     <sidebar class="sidebar-wrapper"/>
     <div class="main-container">
       <navbar/>
+      <router-view></router-view>
     </div>
   </div>
 </template>

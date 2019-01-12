@@ -7,7 +7,6 @@ export default {
   },
   route: {
     dashboard: 'Dashboard',
-    documentation: 'Documentation',
-    documentation1: 'end'
+    documentation: 'Documentation'
   }
 }
