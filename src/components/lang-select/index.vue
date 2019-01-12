@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click" class="international" @command="handleSetLanguage">
+  <el-dropdown trigger="click" @command="handleSetLanguage">
     <div>
       <svg-icon class-name="international-icon" icon-class="language"/>
     </div>
@@ -35,7 +35,6 @@
 
 <style lang="scss" scoped>
   .international-icon {
-    vertical-align: -5px !important;
     font-size: 20px;
     cursor: pointer;
   }

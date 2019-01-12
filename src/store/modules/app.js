@@ -7,7 +7,8 @@ const app = {
     sidebar: {
       opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
       withoutAnimation: false
-    }
+    },
+    size: Cookies.get('size') || 'medium'
   },
   mutations: {
     TOGGLE_DEVICE(state, device) {
@@ -29,6 +30,9 @@ const app = {
       state.sidebar.opened = false
       state.sidebar.withoutAnimation = withoutAnimation
       Cookies.set('sidebarStatus', 0)
+    },
+    SET_SIZE(state, size) {
+      state.size = size
     }
   },
   actions: {
@@ -44,6 +48,9 @@ const app = {
     },
     closeSidebar({commit}, {withoutAnimation} = {}) {
       commit('CLOSE_SIDEBAR', withoutAnimation)
+    },
+    setSize({commit}, size) {
+      commit('SET_SIZE', size)
     }
   }
 }

@@ -2,6 +2,20 @@
   <div class="navbar">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
     <breadcrumb/>
+    <div class="right-menu">
+      <template v-if="device !== 'mobile'">
+        <el-tooltip :content="$t('navbar.screenfull')">
+          <screenfull class="right-menu-item screenfull"/>
+        </el-tooltip>
+        <el-tooltip :content="$t('navbar.size')">
+          <size-select class="right-menu-item"/>
+        </el-tooltip>
+        <lang-select class="right-menu-item"/>
+        <el-tooltip :content="$t('navbar.theme')">
+          <theme-picker class="right-menu-item theme-picker"/>
+        </el-tooltip>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -9,11 +23,19 @@
   import {mapGetters} from 'vuex'
   import Hamburger from 'components/hamburger'
   import Breadcrumb from 'components/Breadcrumb'
+  import Screenfull from 'components/screenfull'
+  import SizeSelect from 'components/size-select'
+  import LangSelect from 'components/lang-select'
+  import ThemePicker from 'components/theme-picker'
 
   export default {
     components: {
       Hamburger,
-      Breadcrumb
+      Breadcrumb,
+      Screenfull,
+      SizeSelect,
+      LangSelect,
+      ThemePicker
     },
     methods: {
       toggleSideBar() {
@@ -22,7 +44,8 @@
     },
     computed: {
       ...mapGetters([
-        'sidebar'
+        'sidebar',
+        'device'
       ])
     }
   }
@@ -37,6 +60,21 @@
       padding: 0 10px;
       height: 50px;
       line-height: 58px;
+    }
+    .right-menu {
+      float: right;
+      height: 100%;
+      .right-menu-item {
+        display: inline-block;
+        margin: 0 8px;
+        vertical-align: top;
+      }
+      .screenfull {
+        margin-top: 14px;
+      }
+      .theme-picker {
+        margin-top: 6px;
+      }
     }
   }
 </style>

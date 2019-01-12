@@ -69,3 +69,27 @@ export const constantRouterMap = [
 export default new Router({
   routes: constantRouterMap
 })
+
+export const asyncRouterMap = [
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/index',
+    alwaysShow: true,
+    meta: {
+      title: 'permission',
+      icon: 'lock',
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'PagePermission',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission'
+        }
+      }
+    ]
+  }
+]
