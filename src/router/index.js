@@ -89,6 +89,46 @@ export const asyncRouterMap = [
         meta: {
           title: 'pagePermission'
         }
+      },
+      {
+        path: 'index1',
+        name: 'PagePermission1',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission'
+        }
+      },
+      {
+        path: 'index2',
+        name: 'PagePermission2',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission'
+        }
+      },
+      {
+        path: 'index3',
+        name: 'PagePermission3',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission'
+        }
+      },
+      {
+        path: 'index4',
+        name: 'PagePermission4',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission'
+        }
+      },
+      {
+        path: 'index5',
+        name: 'PagePermission5',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission'
+        }
       }
     ]
   }

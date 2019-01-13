@@ -9,5 +9,6 @@ export default {
   avatar: (state) => state.user.avatar,
   introduction: (state) => state.user.introduction,
   permission_routers: (state) => state.permission.routers,
-  addRouters: (state) => state.permission.addRouters
+  addRouters: (state) => state.permission.addRouters,
+  visitedViews: (state) => state.tagsView.visitedViews
 }

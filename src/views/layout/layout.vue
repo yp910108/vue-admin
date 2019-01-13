@@ -7,6 +7,7 @@
     <sidebar class="sidebar-wrapper"/>
     <div class="main-container">
       <navbar/>
+      <tags-view/>
       <router-view></router-view>
     </div>
   </div>
@@ -14,13 +15,14 @@
 
 <script>
   import ResizeHandler from './mixin/ResizeHandler'
-  import {Sidebar, Navbar} from './components'
+  import {Sidebar, Navbar, TagsView} from './components'
 
   export default {
     mixins: [ResizeHandler],
     components: {
       Sidebar,
-      Navbar
+      Navbar,
+      TagsView
     },
     methods: {
       handleClickOutside() {
