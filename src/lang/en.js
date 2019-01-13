@@ -7,8 +7,12 @@ export default {
   },
   navbar: {
     screenfull: 'Screenfull',
+    size: 'Global Size',
+    lang: 'Switch language',
     theme: 'Theme',
-    size: 'Global Size'
+    dashboard: 'Dashboard',
+    github: 'Github',
+    logOut: 'Log Out'
   },
   route: {
     dashboard: 'Dashboard',

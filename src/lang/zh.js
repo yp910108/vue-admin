@@ -7,8 +7,12 @@ export default {
   },
   navbar: {
     screenfull: '全屏',
+    size: '布局大小',
+    lang: '切换语言',
     theme: '换肤',
-    size: '布局大小'
+    dashboard: '首页',
+    github: '项目地址',
+    logOut: '退出登录'
   },
   route: {
     dashboard: '首页',

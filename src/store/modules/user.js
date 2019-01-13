@@ -1,5 +1,5 @@
-import {loginByUserName, getUserInfo} from 'api/login'
-import {getToken, setToken} from 'utils/auth'
+import {loginByUserName, getUserInfo, logout} from 'api/login'
+import {getToken, setToken, removeToken} from 'utils/auth'
 
 const user = {
   state: {
@@ -27,6 +27,7 @@ const user = {
     }
   },
   actions: {
+    // 登录
     loginByUserName({commit}, userInfo) {
       const {username, password} = userInfo
       return new Promise(async (resolve, reject) => {
@@ -41,6 +42,7 @@ const user = {
         }
       })
     },
+    // 获取用户信息
     getUserInfo({commit, state}) {
       return new Promise(async (resolve, reject) => {
         try {
@@ -62,6 +64,28 @@ const user = {
         } catch (e) {
           reject(e)
         }
+      })
+    },
+    // 登出
+    logout({commit}) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          await logout()
+          commit('SET_TOKEN', '')
+          commit('SET_ROLES', [])
+          removeToken()
+          resolve()
+        } catch (e) {
+          reject(e)
+        }
+      })
+    },
+    // 前端 登出
+    fedLogout({commit}) {
+      return new Promise((resolve) => {
+        commit('SET_TOKEN', '')
+        removeToken()
+        resolve()
       })
     }
   }

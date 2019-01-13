@@ -3,5 +3,6 @@ import loginAPI from './login'
 
 Mock.mock(/\/login\/login/, 'post', loginAPI.loginByUserName)
 Mock.mock(/\/user\/info/, 'get', loginAPI.getUserInfo)
+Mock.mock(/\/login\/logout/, 'post', loginAPI.logout)
 
 export default Mock

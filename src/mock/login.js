@@ -29,5 +29,6 @@ export default {
     } else {
       return false
     }
-  }
+  },
+  logout: () => 'success'
 }
