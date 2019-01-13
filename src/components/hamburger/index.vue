@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="hamburger-wrapper">
     <svg
       class="hamburger"
       viewBox="0 0 1024 1024"
@@ -37,16 +37,21 @@
 </script>
 
 <style lang="scss" scoped>
-  .hamburger {
+  .hamburger-wrapper {
     display: inline-block;
     width: 20px;
     height: 20px;
-    transform: rotate(90deg);
-    transition: .38s;
-    cursor: pointer;
-  }
+    line-height: 20px;
+    .hamburger {
+      width: 20px;
+      height: 20px;
+      transform: rotate(90deg);
+      transition: .38s;
+      cursor: pointer;
+    }
 
-  .hamburger.is-active {
-    transform: rotate(0deg);
+    .hamburger.is-active {
+      transform: rotate(0deg);
+    }
   }
 </style>

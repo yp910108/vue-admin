@@ -86,7 +86,7 @@
     line-height: 50px;
     .hamburger-container {
       float: left;
-      padding: 0 10px;
+      margin: 0 10px;
       height: 50px;
       line-height: 58px;
     }

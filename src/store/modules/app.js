@@ -33,6 +33,7 @@ const app = {
     },
     SET_SIZE(state, size) {
       state.size = size
+      Cookies.set('size', size)
     }
   },
   actions: {
