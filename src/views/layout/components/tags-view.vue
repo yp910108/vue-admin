@@ -10,7 +10,7 @@
         :class="{active: isActive(tag)}"
       >
         {{generateTitle(tag.title)}}
-        <span class="el-icon-close"/>
+        <span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
       </router-link>
     </scroll-pane>
   </div>
@@ -34,6 +34,12 @@
         if (name) {
           this.$store.dispatch('addView', this.$route)
           this.$refs.scrollPane.update()
+        }
+      },
+      closeSelectedTag(tag) {
+        this.$store.dispatch('deleteView', tag)
+        if (this.isActive(tag)) {
+          this.$router.back()
         }
       }
     },

@@ -17,6 +17,20 @@ const tagsView = {
       if (!view.meta.noCache) {
         state.cachedViews.push(view.name)
       }
+    },
+    DELETE_VISITED_VIEW(state, view) {
+      for (const [i, v] of state.visitedViews.entries()) {
+        if (v.path === view.path) {
+          return state.visitedViews.splice(i, 1)
+        }
+      }
+    },
+    DELETE_CACHED_VIEW(state, view) {
+      for (const [i, v] of state.cachedViews.entries()) {
+        if (v === view.name) {
+          return state.cachedViews.splice(i, 1)
+        }
+      }
     }
   },
   actions: {
@@ -29,6 +43,22 @@ const tagsView = {
     addView({dispatch}, view) {
       dispatch('addVisitedView', view)
       dispatch('addCachedView', view)
+    },
+    deleteVisitedView({commit}, view) {
+      commit('DELETE_VISITED_VIEW', view)
+    },
+    deleteCachedView({commit}, view) {
+      commit('DELETE_CACHED_VIEW', view)
+    },
+    deleteView({dispatch, state}, view) {
+      return new Promise((resolve) => {
+        dispatch('deleteVisitedView', view)
+        dispatch('deleteCachedView', view)
+        resolve({
+          visitedViews: [...state.visitedViews],
+          cachedViews: [...state.cachedViews]
+        })
+      })
     }
   }
 }
