@@ -1,11 +1,17 @@
 <template>
-  <el-scrollbar class="scroll-container">
+  <el-scrollbar ref="scrollContainer" class="scroll-container">
     <slot/>
   </el-scrollbar>
 </template>
 
 <script>
-  export default {}
+  export default {
+    methods: {
+      update() {
+        this.$refs.scrollContainer.update()
+      }
+    }
+  }
 </script>
 
 <style lang="scss" scoped>

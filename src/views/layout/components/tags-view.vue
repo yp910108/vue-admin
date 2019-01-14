@@ -1,6 +1,6 @@
 <template>
   <div class="tags-view-container">
-    <scroll-pane class="tags-view-wrapper">
+    <scroll-pane ref="scrollPane" class="tags-view-wrapper">
       <router-link
         v-for="tag in visitedViews"
         tag="span"
@@ -33,6 +33,7 @@
         const {name} = this.$route
         if (name) {
           this.$store.dispatch('addView', this.$route)
+          this.$refs.scrollPane.update()
         }
       }
     },
