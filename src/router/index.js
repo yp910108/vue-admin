@@ -95,7 +95,7 @@ export const asyncRouterMap = [
         name: 'PagePermission1',
         component: () => import('views/permission'),
         meta: {
-          title: 'pagePermission'
+          title: 'pagePermission1'
         }
       },
       {
@@ -103,7 +103,7 @@ export const asyncRouterMap = [
         name: 'PagePermission2',
         component: () => import('views/permission'),
         meta: {
-          title: 'pagePermission'
+          title: 'pagePermission2'
         }
       },
       {
@@ -111,7 +111,7 @@ export const asyncRouterMap = [
         name: 'PagePermission3',
         component: () => import('views/permission'),
         meta: {
-          title: 'pagePermission'
+          title: 'pagePermission3'
         }
       },
       {
@@ -119,7 +119,7 @@ export const asyncRouterMap = [
         name: 'PagePermission4',
         component: () => import('views/permission'),
         meta: {
-          title: 'pagePermission'
+          title: 'pagePermission4'
         }
       },
       {
@@ -127,7 +127,39 @@ export const asyncRouterMap = [
         name: 'PagePermission5',
         component: () => import('views/permission'),
         meta: {
-          title: 'pagePermission'
+          title: 'pagePermission5'
+        }
+      },
+      {
+        path: 'index6',
+        name: 'PagePermission6',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission6'
+        }
+      },
+      {
+        path: 'index7',
+        name: 'PagePermission7',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission7'
+        }
+      },
+      {
+        path: 'index8',
+        name: 'PagePermission8',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission8'
+        }
+      },
+      {
+        path: 'index9',
+        name: 'PagePermission9',
+        component: () => import('views/permission'),
+        meta: {
+          title: 'pagePermission9'
         }
       }
     ]

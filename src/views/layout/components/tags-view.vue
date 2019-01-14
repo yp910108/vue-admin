@@ -3,6 +3,7 @@
     <scroll-pane ref="scrollPane" class="tags-view-wrapper">
       <router-link
         v-for="tag in visitedViews"
+        ref="tag"
         tag="span"
         class="tags-view-item"
         :key="tag.path"
@@ -33,14 +34,28 @@
         const {name} = this.$route
         if (name) {
           this.$store.dispatch('addView', this.$route)
-          this.$refs.scrollPane.update()
         }
       },
-      closeSelectedTag(tag) {
-        this.$store.dispatch('deleteView', tag)
+      async closeSelectedTag(tag) {
+        const {visitedViews} = await this.$store.dispatch('deleteView', tag)
         if (this.isActive(tag)) {
-          this.$router.back()
+          const latestView = visitedViews.slice(-1)[0]
+          if (latestView) {
+            this.$router.push(latestView)
+          } else {
+            this.$router.push('/')
+          }
         }
+      },
+      moveToCurrentTag() {
+        const tags = this.$refs.tag
+        this.$nextTick(() => {
+          for (const tag of tags) {
+            if (tag.to === this.$route.path) {
+              return this.$refs.scrollPane.moveToTarget(tag.$el)
+            }
+          }
+        })
       }
     },
     computed: {
@@ -51,6 +66,10 @@
     watch: {
       $route() {
         this.addViewTags()
+        this.moveToCurrentTag()
+      },
+      visitedViews() {
+        this.$refs.scrollPane.update()
       }
     },
     mounted() {
@@ -64,6 +83,7 @@
     height: 34px;
     border-bottom: 1px solid #d8dce5;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04);
+    user-select: none;
     .tags-view-wrapper {
       .tags-view-item {
         position: relative;
