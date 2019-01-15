@@ -1,3 +1,4 @@
+import {Message} from 'element-ui'
 import router from '@/router'
 import store from '@/store'
 import NProgress from 'nprogress'
@@ -23,7 +24,9 @@ router.beforeEach(async (to, from, next) => {
           router.addRoutes(store.getters.addRouters)
           next({path: to.path, replace: true}) // hack 确保刷新页面时可以加载当前路由, set repace: true so the navigation will not leave a history record
         } catch (e) {
-          next()
+          await store.dispatch('fedLogout')
+          Message.error(e.toString() || 'Verification failed, please login again')
+          next({path: '/'})
         }
       } else {
         next()

@@ -9,17 +9,17 @@
         :key="tag.path"
         :to="tag.path"
         :class="{active: isActive(tag)}"
-        @contextmenu.prevent.native="openMenu(tag,$event)"
+        @contextmenu.prevent.native="openMenu(tag, $event)"
       >
         {{generateTitle(tag.title)}}
         <span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
       </router-link>
     </scroll-pane>
     <ul v-show="visible" class="contxtmenu" :style="styleMenu">
-      <li>{{$t('tagsView.refresh')}}</li>
-      <li>{{$t('tagsView.close')}}</li>
-      <li>{{$t('tagsView.closeOthers')}}</li>
-      <li>{{$t('tagsView.closeAll')}}</li>
+      <li @click="refreshSelectedTag(selectedTag)">{{$t('tagsView.refresh')}}</li>
+      <li @click="closeSelectedTag(selectedTag)">{{$t('tagsView.close')}}</li>
+      <li @click="closeOtherTags">{{$t('tagsView.closeOthers')}}</li>
+      <li @click="closeAllTags">{{$t('tagsView.closeAll')}}</li>
     </ul>
   </div>
 </template>
@@ -35,7 +35,8 @@
     data() {
       return {
         visible: false,
-        styleMenu: {}
+        styleMenu: {},
+        selectedTag: {}
       }
     },
     methods: {
@@ -49,16 +50,30 @@
           this.$store.dispatch('addView', this.$route)
         }
       },
-      async closeSelectedTag(tag) {
-        const {visitedViews} = await this.$store.dispatch('deleteView', tag)
-        if (this.isActive(tag)) {
-          const latestView = visitedViews.slice(-1)[0]
+      refreshSelectedTag(view) {
+        const {fullPath} = view
+        this.$router.replace({
+          path: `/redirect${fullPath}` // fullPath: /foo/index/123456?name=tom
+        })
+      },
+      closeSelectedTag(view) {
+        this.$store.dispatch('deleteView', view)
+        if (this.isActive(view)) {
+          const latestView = this.visitedViews.slice(-1)[0]
           if (latestView) {
             this.$router.push(latestView)
           } else {
             this.$router.push('/')
           }
         }
+      },
+      closeOtherTags() {
+        this.$store.dispatch('deleteOtherViews', this.selectedTag)
+        this.$router.push(this.selectedTag)
+      },
+      closeAllTags() {
+        this.$store.dispatch('deleteAllViews')
+        this.$router.push('/')
       },
       moveToCurrentTag() {
         const tags = this.$refs.tag
@@ -81,6 +96,7 @@
           top: `${pageY}px`
         }
         this.visible = true
+        this.selectedTag = tag
       },
       docEv() {
         this.visible = false

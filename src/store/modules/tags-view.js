@@ -31,6 +31,18 @@ const tagsView = {
           return state.cachedViews.splice(i, 1)
         }
       }
+    },
+    DELETE_OTHER_VISITED_VIEWS(state, view) {
+      state.visitedViews =
+        state.visitedViews.filter((v) => v.path === view.path)
+    },
+    DELETE_OTHER_CACHED_VIEWS(state, view) {
+      state.cachedViews =
+        state.cachedViews.filter((v) => v.name === view.name)
+    },
+    DELETE_ALL_VIEWS(state) {
+      state.visitedViews = []
+      state.cacheViews = []
     }
   },
   actions: {
@@ -51,14 +63,21 @@ const tagsView = {
       commit('DELETE_CACHED_VIEW', view)
     },
     deleteView({dispatch, state}, view) {
-      return new Promise((resolve) => {
-        dispatch('deleteVisitedView', view)
-        dispatch('deleteCachedView', view)
-        resolve({
-          visitedViews: [...state.visitedViews],
-          cachedViews: [...state.cachedViews]
-        })
-      })
+      dispatch('deleteVisitedView', view)
+      dispatch('deleteCachedView', view)
+    },
+    deleteOtherVisitedViews({commit}, view) {
+      commit('DELETE_OTHER_VISITED_VIEWS', view)
+    },
+    deleteOtherCachedViews({commit}, view) {
+      commit('DELETE_OTHER_CACHED_VIEWS', view)
+    },
+    deleteOtherViews({dispatch}, view) {
+      dispatch('deleteOtherVisitedViews', view)
+      dispatch('deleteOtherCachedViews', view)
+    },
+    deleteAllViews({commit}) {
+      commit('DELETE_ALL_VIEWS')
     }
   }
 }
