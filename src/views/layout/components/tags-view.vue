@@ -9,11 +9,18 @@
         :key="tag.path"
         :to="tag.path"
         :class="{active: isActive(tag)}"
+        @contextmenu.prevent.native="openMenu(tag,$event)"
       >
         {{generateTitle(tag.title)}}
         <span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)"/>
       </router-link>
     </scroll-pane>
+    <ul v-show="visible" class="contxtmenu" :style="styleMenu">
+      <li>{{$t('tagsView.refresh')}}</li>
+      <li>{{$t('tagsView.close')}}</li>
+      <li>{{$t('tagsView.closeOthers')}}</li>
+      <li>{{$t('tagsView.closeAll')}}</li>
+    </ul>
   </div>
 </template>
 
@@ -24,6 +31,12 @@
   export default {
     components: {
       ScrollPane
+    },
+    data() {
+      return {
+        visible: false,
+        styleMenu: {}
+      }
     },
     methods: {
       generateTitle,
@@ -56,6 +69,21 @@
             }
           }
         })
+      },
+      openMenu(tag, e) {
+        const menuMinWidth = 105
+        const {pageX, pageY} = e
+        const {offsetWidth} = this.$el
+        const $elLeft = this.$el.getBoundingClientRect().left
+        const left = Math.min(pageX + 15, offsetWidth + $elLeft - menuMinWidth)
+        this.styleMenu = {
+          left: `${left}px`,
+          top: `${pageY}px`
+        }
+        this.visible = true
+      },
+      docEv() {
+        this.visible = false
       }
     },
     computed: {
@@ -74,6 +102,10 @@
     },
     mounted() {
       this.addViewTags()
+      document.body.addEventListener('click', this.docEv, false)
+    },
+    destroyed() {
+      document.body.removeEventListener('click', this.docEv, false)
     }
   }
 </script>
@@ -135,6 +167,27 @@
             background-color: #b4bccc;
             color: #fff;
           }
+        }
+      }
+    }
+    .contxtmenu {
+      position: fixed;
+      z-index: 100;
+      list-style-type: none;
+      margin: 0;
+      border-radius: 4px;
+      padding: 5px 0;
+      font-weight: 400;
+      font-size: 12px;
+      background: #fff;
+      color: #333;
+      box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, .3);
+      li {
+        margin: 0;
+        padding: 7px 16px;
+        cursor: pointer;
+        &:hover {
+          background: #eee;
         }
       }
     }

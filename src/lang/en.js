@@ -19,5 +19,11 @@ export default {
     documentation: 'Documentation',
     permission: 'Permission',
     pagePermission: 'Page Permission'
+  },
+  tagsView: {
+    refresh: 'Refresh',
+    close: 'Close',
+    closeOthers: 'Close Others',
+    closeAll: 'Close All'
   }
 }
