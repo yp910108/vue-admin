@@ -8,9 +8,26 @@
 
 .breadcrumb-enter,
 .breadcrumb-leave-to {
-  transform: translate3d(20px, 0, 0);
+  transform: translateX(20px);
   opacity: 0;
 }
+
 .breadcrumb-leave-active {
   position: absolute;
+}
+
+/*fade transform*/
+.fade-transform-enter-active,
+.fade-transform-leave-active {
+  transition: all .5s;
+}
+
+.fade-transform-enter {
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+.fade-transform-leave-to {
+  transform: translateX(30px);
+  opacity: 0;
 }

@@ -8,21 +8,22 @@
     <div class="main-container">
       <navbar/>
       <tags-view/>
-      <router-view></router-view>
+      <app-main/>
     </div>
   </div>
 </template>
 
 <script>
   import ResizeHandler from './mixin/ResizeHandler'
-  import {Sidebar, Navbar, TagsView} from './components'
+  import {Sidebar, Navbar, TagsView, AppMain} from './components'
 
   export default {
     mixins: [ResizeHandler],
     components: {
       Sidebar,
       Navbar,
-      TagsView
+      TagsView,
+      AppMain
     },
     methods: {
       handleClickOutside() {
