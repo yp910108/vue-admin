@@ -1,11 +1,9 @@
 <template>
-  <p>this is permission page</p>
+  <p>this is directive</p>
 </template>
-
 <script>
-  export default {}
-</script>
 
+</script>
 <style lang="scss" scoped>
 
 </style>

@@ -16,7 +16,7 @@ Vue.use(Router)
  * redirect: 'noredirect'          if set noredirect will no redirect in the breadcrumb
  * name: 'route-name'              this name is used by <keep-alive> (must set!!!)
  * meta: {
-     roles: ['admin', 'editor'],   will control the page roles(you can set multiple roles)
+     roles: ['admin', 'editor'],   will control the page roles(you can set multiple roles), if not set means this page not require permission
      title: 'title',               the name show in submenu and breadcrumb(recommend set)
      icon: 'svg-name',             the icon show in the slidebar
      noCache: true,                if set true the page will no be cached(default is false)
@@ -90,87 +90,24 @@ export const asyncRouterMap = [
     meta: {
       title: 'permission',
       icon: 'lock',
-      roles: ['admin']
+      roles: ['admin', 'editor']
     },
     children: [
       {
-        path: 'index',
+        path: 'page',
         name: 'PagePermission',
-        component: () => import('views/permission'),
+        component: () => import('views/permission/page'),
         meta: {
-          title: 'pagePermission'
+          title: 'pagePermission',
+          roles: ['admin']
         }
       },
       {
-        path: 'index1',
-        name: 'PagePermission1',
-        component: () => import('views/permission'),
+        path: 'directive',
+        name: 'DirectivePermission',
+        component: () => import('views/permission/directive'),
         meta: {
-          title: 'pagePermission1'
-        }
-      },
-      {
-        path: 'index2',
-        name: 'PagePermission2',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission2'
-        }
-      },
-      {
-        path: 'index3',
-        name: 'PagePermission3',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission3'
-        }
-      },
-      {
-        path: 'index4',
-        name: 'PagePermission4',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission4'
-        }
-      },
-      {
-        path: 'index5',
-        name: 'PagePermission5',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission5'
-        }
-      },
-      {
-        path: 'index6',
-        name: 'PagePermission6',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission6'
-        }
-      },
-      {
-        path: 'index7',
-        name: 'PagePermission7',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission7'
-        }
-      },
-      {
-        path: 'index8',
-        name: 'PagePermission8',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission8'
-        }
-      },
-      {
-        path: 'index9',
-        name: 'PagePermission9',
-        component: () => import('views/permission'),
-        meta: {
-          title: 'pagePermission9'
+          title: 'directivePermission'
         }
       }
     ]
