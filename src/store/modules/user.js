@@ -87,6 +87,32 @@ const user = {
         removeToken()
         resolve()
       })
+    },
+    changeRoles({commit, dispatch}, role) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          commit('SET_TOKEN', role)
+          setToken(role)
+          const res = await getUserInfo(role)
+          const data = res.data
+          if (!data) {
+            throw new Error('error')
+          }
+          const {roles, name, avatar, introduction} = data
+          if (roles && roles.length > 0) {
+            commit('SET_ROLES', data.roles)
+          } else {
+            throw new Error('getInfo: roles must be a non-null array!')
+          }
+          commit('SET_NAME', name)
+          commit('SET_AVATAR', avatar)
+          commit('SET_INTRODUCTION', introduction)
+          dispatch('generateRoutes', data) // 动态修改权限后 重绘侧边菜单
+          resolve()
+        } catch (e) {
+          reject(e)
+        }
+      })
     }
   }
 }

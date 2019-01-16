@@ -7,6 +7,13 @@ import {getToken} from 'utils/auth'
 
 NProgress.configure({showSpinner: false})
 
+// permission judge function
+function hasPermission(roles, permissionRoles) {
+  if (roles.indexOf('admin') >= 0) return true // admin permission passed directly
+  if (!permissionRoles) return true
+  return roles.some((role) => permissionRoles.indexOf(role) >= 0)
+}
+
 const whiteList = ['/login']
 
 router.beforeEach(async (to, from, next) => {
@@ -29,7 +36,13 @@ router.beforeEach(async (to, from, next) => {
           next({path: '/'})
         }
       } else {
-        next()
+        // 没有动态改变权限的需求可直接next() 删除下方权限判断 ↓
+        if (hasPermission(store.getters.roles, to.meta.roles)) {
+          next()
+        } else {
+          next({path: '/401', replace: true, query: {noGoBack: true}})
+        }
+        // 可删 ↑
       }
     }
   } else {
