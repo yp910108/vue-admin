@@ -34,6 +34,9 @@
     .el-scrollbar__bar.is-horizontal {
       display: none;
     }
+    .is-active > .el-submenu__title{
+      color: #f4f4f5!important;
+    }
   }
   // 主体区域
   .main-container {

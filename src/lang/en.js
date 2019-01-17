@@ -18,7 +18,8 @@ export default {
     dashboard: 'Dashboard',
     documentation: 'Documentation',
     permission: 'Permission',
-    pagePermission: 'Page Permission'
+    pagePermission: 'Page Permission',
+    directivePermission: 'Directive Permission'
   },
   tagsView: {
     refresh: 'Refresh',

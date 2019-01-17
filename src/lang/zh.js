@@ -18,7 +18,8 @@ export default {
     dashboard: '首页',
     documentation: '文档',
     permission: '权限测试页',
-    pagePermission: '页面权限'
+    pagePermission: '页面权限',
+    directivePermission: '指令权限'
   },
   tagsView: {
     refresh: '刷新',
