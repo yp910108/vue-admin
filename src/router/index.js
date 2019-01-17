@@ -74,6 +74,16 @@ export const constantRouterMap = [
         component: () => import('views/redirect/index')
       }
     ]
+  },
+  {
+    path: '/401',
+    component: () => import('views/error-page/401'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () => import('views/error-page/404'),
+    hidden: true
   }
 ]
 
@@ -111,5 +121,10 @@ export const asyncRouterMap = [
         }
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: '/404',
+    hidden: true
   }
 ]

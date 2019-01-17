@@ -91,7 +91,8 @@
             try {
               await this.$store.dispatch('loginByUserName', this.form)
               this.loading = false
-              this.$router.push('/')
+              let {query} = this.$route
+              this.$router.push(query.redirect || '/')
             } catch (e) {
               this.loading = false
             }

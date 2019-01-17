@@ -7,6 +7,7 @@
   import SwitchRoles from './components/switch-roles'
 
   export default {
+    name: 'PagePermission',
     components: {
       SwitchRoles
     },
