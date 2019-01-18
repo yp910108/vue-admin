@@ -41,8 +41,8 @@
 </template>
 
 <script>
-  import {isValidUserName} from 'utils/validate'
-  import LangSelect from 'components/lang-select'
+  import {isValidUserName} from '@/utils/validate'
+  import LangSelect from '@/components/lang-select'
 
   export default {
     components: {

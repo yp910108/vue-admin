@@ -55,5 +55,5 @@
 </script>
 
 <style lang="scss">
-  @import "styles/layout.scss";
+  @import "@/styles/layout.scss";
 </style>

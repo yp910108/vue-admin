@@ -25,8 +25,8 @@
 </template>
 
 <script>
-  import {generateTitle} from 'utils/i18n'
-  import ScrollPane from 'components/scroll-pane'
+  import {generateTitle} from '@/utils/i18n'
+  import ScrollPane from '@/components/scroll-pane'
 
   export default {
     components: {

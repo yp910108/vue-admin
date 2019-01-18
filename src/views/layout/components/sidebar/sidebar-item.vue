@@ -56,8 +56,8 @@
 
 <script>
   import path from 'path'
-  import {isExternal} from 'utils'
-  import {generateTitle} from 'utils/i18n'
+  import {isExternal} from '@/utils'
+  import {generateTitle} from '@/utils/i18n'
   import AppLink from './link'
   import Item from './item'
 

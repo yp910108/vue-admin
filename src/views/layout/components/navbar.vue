@@ -44,12 +44,12 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import Hamburger from 'components/hamburger'
-  import Breadcrumb from 'components/Breadcrumb'
-  import Screenfull from 'components/screenfull'
-  import SizeSelect from 'components/size-select'
-  import LangSelect from 'components/lang-select'
-  import ThemePicker from 'components/theme-picker'
+  import Hamburger from '@/components/hamburger'
+  import Breadcrumb from '@/components/Breadcrumb'
+  import Screenfull from '@/components/screenfull'
+  import SizeSelect from '@/components/size-select'
+  import LangSelect from '@/components/lang-select'
+  import ThemePicker from '@/components/theme-picker'
 
   export default {
     components: {

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Layout from 'views/layout/layout'
+import Layout from '@/views/layout/layout'
 
 Vue.use(Router)
 
@@ -27,7 +27,7 @@ Vue.use(Router)
 export const constantRouterMap = [
   {
     path: '/login',
-    component: () => import('views/login'),
+    component: () => import('@/views/login'),
     hidden: true
   },
   {
@@ -38,7 +38,7 @@ export const constantRouterMap = [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: () => import('views/dashboard'),
+        component: () => import('@/views/dashboard'),
         meta: {
           title: 'dashboard',
           icon: 'dashboard',
@@ -55,7 +55,7 @@ export const constantRouterMap = [
       {
         path: 'index',
         name: 'Documentation',
-        component: () => import('views/documentation'),
+        component: () => import('@/views/documentation'),
         meta: {
           title: 'documentation',
           icon: 'documentation',
@@ -71,18 +71,18 @@ export const constantRouterMap = [
     children: [
       {
         path: ':path*',
-        component: () => import('views/redirect/index')
+        component: () => import('@/views/redirect/index')
       }
     ]
   },
   {
     path: '/401',
-    component: () => import('views/error-page/401'),
+    component: () => import('@/views/error-page/401'),
     hidden: true
   },
   {
     path: '/404',
-    component: () => import('views/error-page/404'),
+    component: () => import('@/views/error-page/404'),
     hidden: true
   }
 ]
@@ -106,7 +106,7 @@ export const asyncRouterMap = [
       {
         path: 'page',
         name: 'PagePermission',
-        component: () => import('views/permission/page'),
+        component: () => import('@/views/permission/page'),
         meta: {
           title: 'pagePermission',
           roles: ['admin']
@@ -115,7 +115,7 @@ export const asyncRouterMap = [
       {
         path: 'directive',
         name: 'DirectivePermission',
-        component: () => import('views/permission/directive'),
+        component: () => import('@/views/permission/directive'),
         meta: {
           title: 'directivePermission'
         }

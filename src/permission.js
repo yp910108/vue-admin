@@ -1,9 +1,9 @@
 import {Message} from 'element-ui'
 import router from '@/router'
-import store from 'store'
+import store from '@/store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import {getToken} from 'utils/auth'
+import {getToken} from '@/utils/auth'
 
 NProgress.configure({showSpinner: false})
 
