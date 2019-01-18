@@ -37,6 +37,23 @@ div:focus {
   outline: none;
 }
 
+code {
+  display: block;
+  margin-bottom: 20px;
+  padding: 15px 16px;
+  line-height: 36px;
+  font-size: 15px;
+  font-family: "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+  background: #eef1f6;
+  a {
+    color: #337ab7;
+    cursor: pointer;
+    &:hover {
+      color: rgb(32, 160, 255);
+    }
+  }
+}
+
 //main-container全局样式
 .app-container {
   padding: 20px;
