@@ -105,7 +105,7 @@
           }
           100% {
             left: 60px;
-            top: 71px;
+            top: 97px;
             opacity: 0;
           }
         }

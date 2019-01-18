@@ -1,13 +1,30 @@
 <template>
-  <p>this is dashboard</p>
+  <div class="dashboard-container">
+    <component :is="currentRole"/>
+  </div>
 </template>
 
 <script>
+  import {mapGetters} from 'vuex'
+  import adminDashboard from './admin'
+  import editorDashboard from './editor'
+
   export default {
-    name: 'Dashboard'
+    name: 'Dashboard',
+    components: {
+      adminDashboard,
+      editorDashboard
+    },
+    computed: {
+      ...mapGetters([
+        'roles'
+      ]),
+      currentRole() {
+        if (this.roles.includes('admin')) {
+          return 'adminDashboard'
+        }
+        return 'editorDashboard'
+      }
+    }
   }
 </script>
-
-<style lang="scss" scoped>
-
-</style>
