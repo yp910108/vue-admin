@@ -22,6 +22,15 @@
         </div>
       </el-col>
     </el-row>
+    <el-row :gutter="8">
+      <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="margin-bottom: 30px;padding-right: 8px;">
+        <transaction-table/>
+      </el-col>
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+        <todo-list/>
+      </el-col>
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6"></el-col>
+    </el-row>
   </div>
 </template>
 <script>
@@ -31,6 +40,8 @@
   import RaddarChart from './components/raddar-chart'
   import PieChart from './components/pie-chart'
   import BarChart from './components/bar-chart'
+  import TransactionTable from './components/transaction-table'
+  import TodoList from './components/todo-list'
 
   const lineChartData = {
     newVisitis: {
@@ -58,7 +69,9 @@
       LineChart,
       RaddarChart,
       PieChart,
-      BarChart
+      BarChart,
+      TransactionTable,
+      TodoList
     },
     data() {
       return {
