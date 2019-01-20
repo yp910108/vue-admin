@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
-    <breadcrumb/>
+    <breadcrumb class="breadcrumb-container"/>
     <div class="right-menu">
       <template v-if="device !== 'mobile'">
         <el-tooltip :content="$t('navbar.screenfull')">
@@ -89,6 +89,9 @@
       margin: 0 10px;
       height: 50px;
       line-height: 58px;
+    }
+    .breadcrumb-container {
+      float: left;
     }
     .right-menu {
       float: right;

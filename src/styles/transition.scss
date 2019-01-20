@@ -12,6 +12,10 @@
   opacity: 0;
 }
 
+.breadcrumb-move {
+  transition: all .5s;
+}
+
 .breadcrumb-leave-active {
   position: absolute;
 }
