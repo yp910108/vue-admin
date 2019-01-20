@@ -19,6 +19,7 @@
 <style lang="scss" scoped>
   .app-main {
     position: relative;
+    width: 100%;
     /*84 = navbar + tags-view = 50 +34 */
     min-height: calc(100vh - 84px);
     overflow: hidden;

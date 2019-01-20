@@ -1,0 +1,155 @@
+<template>
+  <div :class="className" :style="{height, width}"></div>
+</template>
+
+<script>
+  import {debounce} from '@/utils'
+  import echarts from 'echarts'
+
+  require('echarts/theme/macarons')
+
+  export default {
+    props: {
+      className: {
+        type: String,
+        default: 'chart'
+      },
+      width: {
+        type: String,
+        default: '100%'
+      },
+      height: {
+        type: String,
+        default: '350px'
+      },
+      autoResize: {
+        type: Boolean,
+        default: true
+      },
+      chartData: {
+        type: Object,
+        required: true
+      }
+    },
+    data() {
+      return {}
+    },
+    methods: {
+      __resizeHandler: debounce(function() {
+        if (this.chart) {
+          this.chart.resize()
+        }
+      }, 100),
+      sidebarResizeHandler(e) {
+        if (e.propertyName === 'width' && e.target === this.sidebarElm) {
+          this.__resizeHandler()
+        }
+      },
+      setOptions({expectedData, actualData} = {}) {
+        this.chart.setOption({
+          xAxis: {
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            boundaryGap: false,
+            axisTick: {
+              show: false
+            }
+          },
+          grid: {
+            left: 10,
+            right: 10,
+            bottom: 20,
+            top: 30,
+            containLabel: true
+          },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross'
+            },
+            padding: [5, 10]
+          },
+          yAxis: {
+            axisTick: {
+              show: false
+            }
+          },
+          legend: {
+            data: ['expected', 'actual']
+          },
+          series: [
+            {
+              name: 'expected',
+              itemStyle: {
+                normal: {
+                  color: '#FF005A',
+                  lineStyle: {
+                    color: '#FF005A',
+                    width: 2
+                  }
+                }
+              },
+              smooth: true,
+              type: 'line',
+              data: expectedData,
+              animationDuration: 2800,
+              animationEasing: 'cubicInOut'
+            },
+            {
+              name: 'actual',
+              smooth: true,
+              type: 'line',
+              itemStyle: {
+                normal: {
+                  color: '#3888fa',
+                  lineStyle: {
+                    color: '#3888fa',
+                    width: 2
+                  },
+                  areaStyle: {
+                    color: '#f3f8ff'
+                  }
+                }
+              },
+              data: actualData,
+              animationDuration: 2800,
+              animationEasing: 'quadraticOut'
+            }
+          ]
+        })
+      },
+      initChart() {
+        this.chart = echarts.init(this.$el, 'macarons')
+        this.setOptions(this.chartData)
+      }
+    },
+    watch: {
+      chartData: {
+        deep: true,
+        handler(newVal) {
+          this.setOptions(newVal)
+        }
+      }
+    },
+    mounted() {
+      this.initChart()
+      if (this.autoResize) {
+        window.addEventListener('resize', this.__resizeHandler)
+      }
+      this.sidebarElm = document.getElementsByClassName('sidebar-wrapper')[0]
+      this.sidebarElm && this.sidebarElm.addEventListener('transitionend', this.sidebarResizeHandler)
+    },
+    beforeDestroy() {
+      if (!this.chart) {
+        return
+      }
+      if (this.autoResize) {
+        window.removeEventListener('resize', this.__resizeHandler)
+      }
+
+      this.sidebarElm && this.sidebarElm.removeEventListener('transitionend', this.sidebarResizeHandler)
+
+      this.chart.dispose()
+      this.chart = null
+    }
+  }
+</script>
