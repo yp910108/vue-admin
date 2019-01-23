@@ -49,6 +49,9 @@
         color: #e6e6e6;
       }
     }
+    .toggle-all:checked + label:before {
+      color: #737373;
+    }
   }
   .todo-list {
     margin: 0;
