@@ -29,7 +29,9 @@
       <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
         <todo-list/>
       </el-col>
-      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6"></el-col>
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+        <box-card/>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -42,6 +44,7 @@
   import BarChart from './components/bar-chart'
   import TransactionTable from './components/transaction-table'
   import TodoList from './components/todo-list'
+  import BoxCard from './components/box-card'
 
   const lineChartData = {
     newVisitis: {
@@ -71,7 +74,8 @@
       PieChart,
       BarChart,
       TransactionTable,
-      TodoList
+      TodoList,
+      BoxCard
     },
     data() {
       return {
