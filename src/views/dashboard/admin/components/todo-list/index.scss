@@ -124,4 +124,52 @@
       }
     }
   }
+  .footer {
+    position: relative;
+    border-top: 1px solid #e6e6e6;
+    padding: 10px 15px;
+    height: 40px;
+    text-align: center;
+    color: #777;
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 40px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
+    }
+  }
+  .todo-count {
+    float: left;
+    text-align: left;
+    strong {
+      font-weight: 300;
+    }
+  }
+  .filters {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: inline;
+      a {
+        border-radius: 3px;
+        border: 1px solid transparent;
+        padding: 3px 7px;
+        font-size: 12px;
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+          border-color: rgba(175, 47, 47, 0.1)
+        }
+        &.selected {
+          border-color: rgba(175, 47, 47, 0.2);
+        }
+      }
+    }
+  }
 }
