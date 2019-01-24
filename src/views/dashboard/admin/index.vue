@@ -26,10 +26,10 @@
       <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" style="margin-bottom: 30px;padding-right: 8px;">
         <transaction-table/>
       </el-col>
-      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" style="margin-bottom:30px;">
         <todo-list/>
       </el-col>
-      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
+      <el-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6" style="margin-bottom:30px;">
         <box-card/>
       </el-col>
     </el-row>
