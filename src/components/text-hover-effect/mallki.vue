@@ -29,6 +29,7 @@
     outline: none;
     text-decoration: none;
     color: #4dd9d5;
+    transition: color 0.5s 0.25s;
     overflow: hidden;
     &:before {
       content: "";
@@ -58,24 +59,26 @@
         left: 0;
         width: 100%;
         color: #3888fa;
-        transition: transform 5s;
-        transition-delay: 0.3s;
+        transition: transform 0.5s;
         transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
       }
       &:nth-child(1):before {
         top: 0;
-        transform: translateY(-100%);
+        transform: translateY(100%);
       }
       &:nth-child(2):before {
         bottom: 0;
-        transform: translateY(100%);
+        transform: translateY(-100%);
       }
     }
     &:hover {
+      transition: none;
+      color: transparent;
       &:before {
         transform: translateX(100%);
       }
       span:before {
+        transition-delay: 0.3s;
         transform: translateY(0);
       }
     }
