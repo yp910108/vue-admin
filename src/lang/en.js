@@ -85,6 +85,10 @@ export default {
     closeOthers: 'Close Others',
     closeAll: 'Close All'
   },
+  documentation: {
+    documentation: 'Documentation',
+    github: 'Github Repository'
+  },
   permission: {
     roles: 'Your roles',
     switchRoles: 'Switch roles',
