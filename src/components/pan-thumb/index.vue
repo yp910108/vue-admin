@@ -1,5 +1,10 @@
 <template>
   <div :style="{zIndex, width, height}" class="pan-item">
+    <div class="pan-info">
+      <div class="pan-info-roles-container">
+        <slot/>
+      </div>
+    </div>
     <img :src="image" class="pan-img">
   </div>
 </template>
@@ -30,10 +35,25 @@
 
 <style lang="scss" scoped>
   .pan-item {
+    position: relative;
     border-radius: 50%;
-    border: 5px solid #fff;
-    background: #fff;
+    .pan-info {
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 50%;
+      width: inherit;
+      height: inherit;
+      box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.05);
+      .pan-info-roles-container {
+        padding: 20px;
+        text-align: center;
+      }
+    }
     .pan-img {
+      position: absolute;
+      left: 0;
+      top: 0;
       border-radius: 50%;
       width: 100%;
       height: 100%;

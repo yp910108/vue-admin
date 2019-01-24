@@ -4,9 +4,9 @@
       <img src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png">
     </div>
     <div style="position: relative;">
-      <pan-thumb :image="avatar" width="70px" height="70px" class="pan-thumb"/>
-      <mallki class-name="mallki-text" text="vue-custom-admin"/>
-      <div style="padding-top:35px;" class="progress-item">
+      <pan-thumb :image="avatar" width="60px" height="60px" class="pan-thumb"/>
+      <mallki class-name="mallki-text" text="vue-admin"/>
+      <div style="padding-top: 35px;" class="progress-item">
         <span>Vue</span>
         <el-progress :percentage="70"/>
       </div>
@@ -38,9 +38,7 @@
     },
     computed: {
       ...mapGetters([
-        'name',
-        'avatar',
-        'roles'
+        'avatar'
       ])
     }
   }
@@ -67,6 +65,10 @@
       position: absolute;
       left: 0;
       top: -45px;
+      border: 5px solid #fff;
+      width: 70px !important;
+      height: 70px !important;
+      background: #fff;
     }
     .mallki-text {
       position: absolute;

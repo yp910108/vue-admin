@@ -41,6 +41,14 @@ div:focus {
   outline: none;
 }
 
+.clearfix {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
 code {
   display: block;
   margin-bottom: 20px;

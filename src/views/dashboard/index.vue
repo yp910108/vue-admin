@@ -15,15 +15,19 @@
       adminDashboard,
       editorDashboard
     },
+    data() {
+      return {
+        currentRole: 'adminDashboard'
+      }
+    },
     computed: {
       ...mapGetters([
         'roles'
-      ]),
-      currentRole() {
-        if (this.roles.includes('admin')) {
-          return 'adminDashboard'
-        }
-        return 'editorDashboard'
+      ])
+    },
+    created() {
+      if (!this.roles.includes('admin')) {
+        this.currentRole = 'editorDashboard'
       }
     }
   }
