@@ -69,6 +69,9 @@
       width: 70px !important;
       height: 70px !important;
       background: #fff;
+      .pan-info {
+        box-shadow: none;
+      }
     }
     .mallki-text {
       position: absolute;
