@@ -18,7 +18,7 @@
     </div>
     <div :key="`checkPermission${key}`" style="margin-top: 30px;">
       <code>
-        In some cases it is not suitable to use v-permission, such as element Tab component which can only be achieved by manually setting the v-if.
+        {{ $t('permission.tips') }}
         <br> e.g.
       </code>
       <el-tabs type="border-card" style="width: 500px;">
