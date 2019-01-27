@@ -23,8 +23,7 @@
       generateTitle,
       pathCompile(path) {
         const {params} = this.$route
-        var toPath = pathToRegexp.compile(path)
-        return toPath(params)
+        return pathToRegexp.compile(path)(params)
       },
       handleLink(item) {
         const {redirect, path} = item

@@ -9,7 +9,12 @@
   export default {
     methods: {
       toMarkDown() {
-        this.$router.push('/components/markdown?id=123456')
+        this.$router.push({
+          name: 'MarkdownDemo',
+          params: {
+            id: 123456
+          }
+        })
       }
     }
   }

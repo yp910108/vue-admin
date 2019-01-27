@@ -6,12 +6,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'MarkdownDemo',
-    mounted() {
-      console.log(this.$store.getters.visitedViews)
-    }
-  }
+  export default {}
 </script>
 
 <style lang="scss" scoped>
