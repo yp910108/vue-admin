@@ -40,9 +40,11 @@ const tagsView = {
       state.cachedViews =
         state.cachedViews.filter((v) => v.name === view.name)
     },
-    DELETE_ALL_VIEWS(state) {
+    DELETE_ALL_VISITED_VIEWS(state) {
       state.visitedViews = []
-      state.cacheViews = []
+    },
+    DELETE_ALL_CACHED_VIEWS(state) {
+      state.cachedViews = []
     },
     UPDATE_VISITED_VIEW(state, view) {
       for (let v of state.visitedViews) {
@@ -84,8 +86,15 @@ const tagsView = {
       dispatch('deleteOtherVisitedViews', view)
       dispatch('deleteOtherCachedViews', view)
     },
-    deleteAllViews({commit}) {
-      commit('DELETE_ALL_VIEWS')
+    deleteAllVisitedViews({commit}) {
+      commit('DELETE_ALL_VISITED_VIEWS')
+    },
+    deleteAllCachedViews({commit}) {
+      commit('DELETE_ALL_CACHED_VIEWS')
+    },
+    deleteAllViews({dispatch}) {
+      dispatch('deleteAllVisitedViews')
+      dispatch('deleteAllCachedViews')
     },
     updateVisitedView({commit}, view) {
       commit('UPDATE_VISITED_VIEW', view)

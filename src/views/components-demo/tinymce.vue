@@ -1,22 +1,13 @@
 <template>
   <p>
     this is tinymce
-    <el-button type="primary" @click="toMarkDown">to mackdown</el-button>
+    <el-button type="primary">to mackdown</el-button>
   </p>
 </template>
 
 <script>
   export default {
-    methods: {
-      toMarkDown() {
-        this.$router.push({
-          name: 'MarkdownDemo',
-          params: {
-            id: 123456
-          }
-        })
-      }
-    }
+    name: 'TinymceDemo'
   }
 </script>
 

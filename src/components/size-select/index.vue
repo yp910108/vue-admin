@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click">
+  <el-dropdown trigger="click" @command="handleSetSize">
     <div>
       <svg-icon class-name="size-icon" icon-class="size"/>
     </div>
@@ -16,6 +16,27 @@
     computed: {
       size() {
         return this.$store.getters.size
+      }
+    },
+    methods: {
+      refreshView() {
+        // In order to make the cached page re-rendered
+        this.$store.dispatch('deleteAllCachedViews')
+        const {fullPath} = this.$route
+        this.$nextTick(() => {
+          this.$router.replace({
+            path: `/redirect${fullPath}`
+          })
+        })
+      },
+      handleSetSize(size) {
+        this.$ELEMENT.size = size
+        this.$store.dispatch('setSize', size)
+        this.refreshView()
+        this.$message({
+          message: 'Switch Size Success',
+          type: 'success'
+        })
       }
     }
   }
