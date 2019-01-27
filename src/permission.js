@@ -29,7 +29,7 @@ router.beforeEach(async (to, from, next) => {
           const userInfo = await store.dispatch('getUserInfo') // 拉取用户信息
           await store.dispatch('generateRoutes', userInfo)
           router.addRoutes(store.getters.addRouters)
-          next({path: to.path, replace: true}) // hack 确保刷新页面时可以加载当前路由, set replace: true so the navigation will not leave a history record
+          next({...to, replace: true}) // hack 确保刷新页面时可以加载当前路由, set replace: true so the navigation will not leave a history record
         } catch (e) {
           await store.dispatch('fedLogout')
           Message.error(e.toString() || 'Verification failed, please login again')

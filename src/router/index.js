@@ -2,6 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '@/views/layout/layout'
 
+/* Router Modules */
+import componentsRouter from './modules/components'
+
 Vue.use(Router)
 
 /**
@@ -155,6 +158,8 @@ export const asyncRouterMap = [
       }
     ]
   },
+  /** When your routing table is too long, you can split it into small modules **/
+  componentsRouter,
   {
     path: '/error',
     component: Layout,

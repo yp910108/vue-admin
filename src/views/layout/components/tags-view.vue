@@ -7,7 +7,7 @@
         tag="span"
         class="tags-view-item"
         :key="tag.path"
-        :to="tag.path"
+        :to="{path: tag.path, query: tag.query, fullPath: tag.fullPath}"
         :class="{active: isActive(tag)}"
         @contextmenu.prevent.native="openMenu(tag, $event)"
       >
@@ -51,6 +51,7 @@
         }
       },
       refreshSelectedTag(view) {
+        this.$store.dispatch('deleteCachedView', view)
         const {fullPath} = view
         this.$router.replace({
           path: `/redirect${fullPath}` // fullPath: /foo/index/123456?name=tom
@@ -79,8 +80,13 @@
         const tags = this.$refs.tag
         this.$nextTick(() => {
           for (const tag of tags) {
-            if (tag.to === this.$route.path) {
-              return this.$refs.scrollPane.moveToTarget(tag.$el)
+            if (tag.to.path === this.$route.path) {
+              this.$refs.scrollPane.moveToTarget(tag.$el)
+              // when query is different then update
+              if (tag.to.fullPath !== this.$route.fullPath) {
+                this.$store.dispatch('updateVisitedView', this.$route)
+              }
+              break
             }
           }
         })
