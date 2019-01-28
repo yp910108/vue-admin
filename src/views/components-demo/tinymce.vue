@@ -1,13 +1,25 @@
 <template>
-  <p>
-    this is tinymce
-    <el-button type="primary">to mackdown</el-button>
-  </p>
+  <div class="components-container">
+    <code>
+      {{$t('components.tinymceTips')}}
+      <a target="_blank" class="link-type">
+        {{$t('components.documentation')}}
+      </a>
+    </code>
+    <div>
+      <tinymce></tinymce>
+    </div>
+  </div>
 </template>
 
 <script>
+  import Tinymce from '@/components/tinymce'
+
   export default {
-    name: 'TinymceDemo'
+    name: 'TinymceDemo',
+    components: {
+      Tinymce
+    }
   }
 </script>
 
