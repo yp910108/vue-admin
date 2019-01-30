@@ -9,7 +9,25 @@
       <el-tag class="tag-title">Basic:</el-tag>
       <markdown-editor v-model="content" height="300px"/>
     </div>
-    <div class="editor-container"></div>
+    <div class="editor-container">
+      <el-tag class="tag-title">Markdown Mode:</el-tag>
+      <markdown-editor v-model="content" :options="{hideModeSwitch: true, previewStyle: 'tab'}" height="200px"/>
+    </div>
+    <div class="editor-container">
+      <el-tag class="tag-title">Customize Toolbar:</el-tag>
+      <markdown-editor v-model="content" :options="{toolbarItems: ['heading', 'bold', 'italic']}"/>
+    </div>
+    <div class="editor-container">
+      <el-tag class="tag-title">I18n:</el-tag>
+      <el-alert
+        type="success"
+        title="You can change the language of the admin system to see the effect"
+        :closable="false"
+      />
+      <markdown-editor ref="markdownEditor" v-model="content" :language="language" height="300px"/>
+    </div>
+    <el-button style="margin-top: 80px;" type="primary" icon="el-icon-document" @click="getHtml">Get HTML</el-button>
+    <div v-html="html"/>
   </div>
 </template>
 
@@ -32,7 +50,24 @@
     },
     data() {
       return {
-        content
+        content,
+        languageTypeList: {
+          'en': 'en_US',
+          'zh': 'zh_CN',
+          'es': 'es_ES'
+        },
+        html: ''
+      }
+    },
+    methods: {
+      getHtml() {
+        this.html = this.$refs.markdownEditor.getHtml()
+        console.log(this.html)
+      }
+    },
+    computed: {
+      language() {
+        return this.languageTypeList[this.$store.getters.language]
       }
     }
   }

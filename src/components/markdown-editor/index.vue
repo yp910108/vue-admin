@@ -66,6 +66,9 @@
         if (!this.editor) return
         this.editor.off('change')
         this.editor.remove()
+      },
+      getHtml() {
+        return this.editor.getHtml()
       }
     },
     computed: {
@@ -75,6 +78,12 @@
         options.height = this.height
         options.language = this.language
         return options
+      }
+    },
+    watch: {
+      language() {
+        this.destroyEditor()
+        this.initEditor()
       }
     },
     mounted() {
