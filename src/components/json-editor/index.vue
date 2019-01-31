@@ -46,7 +46,7 @@
       value(newVal) {
         const editorValue = this.jsonEditor.getValue()
         if (newVal !== editorValue) {
-          this.jsonEditor.setValue(JSON.stringify(this.value, null, 2))
+          this.jsonEditor.setValue(JSON.stringify(newVal, null, 2))
         }
       }
     }

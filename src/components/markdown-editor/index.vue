@@ -84,6 +84,11 @@
       language() {
         this.destroyEditor()
         this.initEditor()
+      },
+      value(newVal, oldVal) {
+        if (newVal !== oldVal && newVal !== this.editor.getValue()) {
+          this.editor.setValue(newVal)
+        }
       }
     },
     mounted() {

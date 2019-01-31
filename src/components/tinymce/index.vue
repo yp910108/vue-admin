@@ -116,6 +116,11 @@
         })
       }
     },
+    watch: {
+      value(newVal) {
+        window.tinymce.get(this.id).setContent(newVal || '')
+      }
+    },
     mounted() {
       this.initTinymce()
     },
