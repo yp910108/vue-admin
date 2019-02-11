@@ -36,6 +36,7 @@
 <style lang="scss" scoped>
   .pan-item {
     position: relative;
+    display: inline-block;
     border-radius: 50%;
     .pan-info {
       position: absolute;
