@@ -70,6 +70,9 @@
     .main-container {
       margin-left: 0;
     }
+    &.app-wrapper.mobile:not(.hide-sidebar) {
+      position: fixed;
+    }
     &.hide-sidebar {
       .sidebar-wrapper {
         transform: translateX(-180px);

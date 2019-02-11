@@ -12,15 +12,18 @@
     >
       Change Avatar
     </el-button>
+    <image-cropper/>
   </div>
 </template>
 <script>
   import PanThumb from '@/components/pan-thumb'
+  import ImageCropper from '@/components/image-cropper'
 
   export default {
     name: 'AvatarUploadDemo',
     components: {
-      PanThumb
+      PanThumb,
+      ImageCropper
     },
     data() {
       return {
