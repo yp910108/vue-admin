@@ -9,10 +9,14 @@
       type="primary"
       icon="upload"
       style="position: absolute; bottom: 15px; margin-left: 40px;"
+      @click="imagecropperShow = true"
     >
       Change Avatar
     </el-button>
-    <image-cropper/>
+    <image-cropper
+      :visible.sync="imagecropperShow"
+      :langType="$store.getters.language"
+    />
   </div>
 </template>
 <script>
@@ -27,7 +31,8 @@
     },
     data() {
       return {
-        image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191'
+        image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191',
+        imagecropperShow: false
       }
     }
   }

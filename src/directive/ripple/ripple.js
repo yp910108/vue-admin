@@ -17,8 +17,8 @@ export default {
         el.appendChild(ripple)
       }
       ripple.className = 'e-ripple'
-      ripple.style.left = (rect.width - ripple.offsetWidth) / 2 + 'px'
-      ripple.style.top = (rect.height - ripple.offsetHeight) / 2 + 'px'
+      ripple.style.left = (e.clientX - rect.left - ripple.offsetWidth / 2) + 'px'
+      ripple.style.top = (e.clientY - rect.top - ripple.offsetHeight / 2) + 'px'
       ripple.style.backgroundColor = bg
       ripple.className = 'e-ripple z-active'
     })
