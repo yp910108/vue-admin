@@ -1,0 +1,356 @@
+@keyframes vicp {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.vue-image-crop-upload {
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  .vicp-wrapper {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 2px;
+    padding: 25px;
+    width: 600px;
+    height: 330px;
+    background: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
+    animation: vicp 0.12s ease-in;
+    .vicp-close {
+      position: absolute;
+      right: -30px;
+      top: -30px;
+      cursor: pointer;
+      .vicp-icon4 {
+        position: relative;
+        display: block;
+        width: 30px;
+        height: 30px;
+        transition: transform 0.18s;
+        &:hover {
+          transform: rotate(90deg);
+        }
+        &:before,
+        &:after {
+          content: "";
+          position: absolute;
+          left: 4px;
+          top: 12px;
+          width: 20px;
+          height: 3px;
+          background: #fff;
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
+        }
+        &:before {
+          transform: rotate(45deg);
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    .vicp-step1 {
+      .vicp-drop-area {
+        position: relative;
+        border: 1px dashed rgba(0, 0, 0, 0.08);
+        padding: 35px;
+        height: 170px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.03);
+        cursor: pointer;
+        &:hover {
+          border-color: rgba(0, 0, 0, 0.1);
+          background: rgba(0, 0, 0, 0.05);
+        }
+        .vicp-icon1 {
+          display: block;
+          margin: 0 auto 6px;
+          width: 42px;
+          height: 42px;
+          .vicp-icon1-arrow {
+            display: block;
+            margin: 0 auto;
+            width: 0;
+            border-bottom: 14.7px solid rgba(0, 0, 0, 0.3);
+            border-left: 14.7px solid transparent;
+            border-right: 14.7px solid transparent;
+          }
+          .vicp-icon1-body {
+            display: block;
+            margin: 0 auto;
+            width: 12.6px;
+            height: 14.7px;
+            background: rgba(0, 0, 0, 0.3);
+          }
+          .vicp-icon1-bottom {
+            display: block;
+            border: 6px solid rgba(0, 0, 0, 0.3);
+            border-top: none;
+            height: 12.6px;
+          }
+        }
+        .vicp-hint {
+          display: block;
+          padding: 15px;
+          line-height: 30px;
+          font-size: 14px;
+          color: #666;
+        }
+      }
+    }
+    .vicp-step2 {
+      .vicp-crop {
+        .vicp-crop-left {
+          float: left;
+          .vicp-img-container {
+            position: relative;
+            display: block;
+            width: 240px;
+            height: 180px;
+            background: #e5e5e0;
+            overflow: hidden;
+            .vicp-img {
+              position: absolute;
+              user-select: none;
+              cursor: move;
+            }
+            .vicp-img-shade {
+              position: absolute;
+              box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
+              background: rgba(241, 242, 243, 0.8);
+              &.vicp-img-shade-1 {
+                left: 0;
+                top: 0;
+              }
+              &.vicp-img-shade-2 {
+                bottom: 0;
+                right: 0;
+              }
+            }
+          }
+          .vicp-range {
+            position: relative;
+            margin: 30px 0 10px 0;
+            padding-top: 1px;
+            width: 240px;
+            height: 19px;
+            .vicp-icon5,
+            .vicp-icon6 {
+              position: absolute;
+              top: 0;
+              border-radius: 100%;
+              width: 18px;
+              height: 18px;
+              background: rgba(0, 0, 0, 0.08);
+              cursor: pointer;
+              &:hover {
+                background-color: rgba(0, 0, 0, 0.14);
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+              }
+            }
+            .vicp-icon5 {
+              left: 0;
+              &:before {
+                content: "";
+                position: absolute;
+                left: 3px;
+                top: 8px;
+                width: 12px;
+                height: 2px;
+                background: #fff;
+              }
+            }
+            .vicp-icon6 {
+              right: 0;
+              &:before {
+                content: "";
+                position: absolute;
+                left: 3px;
+                top: 8px;
+                width: 12px;
+                height: 2px;
+                background: #fff;
+              }
+              &:after {
+                content: "";
+                position: absolute;
+                left: 8px;
+                top: 3px;
+                width: 2px;
+                height: 12px;
+                background: #fff;
+              }
+            }
+            input[type=range] {
+              display: block;
+              margin: 5px auto;
+              border-radius: 2px;
+              width: 180px;
+              height: 6px;
+              background: rgba(68, 170, 119, 0.3);
+              box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+              appearance: none;
+              outline: none;
+              cursor: pointer;
+              &:focus {
+                background: rgba(68, 170, 119, 0.5);
+              }
+              &::-webkit-slider-thumb {
+                appearance: none;
+                border: none;
+                border-radius: 100%;
+                width: 12px;
+                height: 12px;
+                background: #61c091;
+                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
+                transition: 0.2s;
+              }
+              &:active::-webkit-slider-thumb {
+                width: 14px;
+                height: 14px;
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.23);
+              }
+            }
+          }
+          .vicp-rotate {
+            position: relative;
+            width: 240px;
+            height: 18px;
+            i {
+              display: block;
+              border-radius: 100%;
+              width: 18px;
+              height: 18px;
+              line-height: 18px;
+              text-align: center;
+              font-weight: bold;
+              font-size: 12px;
+              background: rgba(0, 0, 0, 0.08);
+              color: #fff;
+              cursor: pointer;
+              &:hover {
+                background: rgba(0, 0, 0, 0.14);
+                box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+              }
+              &:first-child {
+                float: left;
+              }
+              &:last-child {
+                float: right;
+              }
+            }
+          }
+        }
+        .vicp-crop-right {
+          float: right;
+          .vicp-preview {
+            height: 150px;
+            .vicp-preview-item {
+              float: left;
+              position: relative;
+              margin-right: 16px;
+              padding: 5px;
+              width: 100px;
+              height: 100px;
+              span {
+                position: absolute;
+                left: 0;
+                bottom: -30px;
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+                color: #bbb;
+              }
+              img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                padding: 3px;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                background: #fff;
+                overflow: hidden;
+                user-select: none;
+              }
+            }
+            .vicp-preview-item-circle {
+              margin-right: 0;
+              img {
+                border-radius: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+    .vicp-error {
+      margin-top: 5px;
+      height: 20px;
+      line-height: 20px;
+      font-size: 14px;
+      color: #d10;
+      text-align: center;
+      .vicp-icon2 {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 20px;
+        height: 20px;
+        &:after,
+        &:before {
+          content: "";
+          position: absolute;
+          left: 4px;
+          top: 9px;
+          width: 13px;
+          height: 2px;
+          background: #d10;
+        }
+        &:before {
+          transform: rotate(45deg);
+        }
+        &:after {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+    .vicp-operate {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      a {
+        float: left;
+        margin-left: 10px;
+        border-radius: 2px;
+        width: 100px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        font-size: 14px;
+        color: #4a7;
+        cursor: pointer;
+        user-select: none;
+        &:hover {
+          background: rgba(0, 0, 0, 0.03);
+        }
+      }
+    }
+  }
+}

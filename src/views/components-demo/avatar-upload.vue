@@ -15,9 +15,10 @@
     </el-button>
     <image-cropper
       :visible.sync="imagecropperShow"
-      :langType="$store.getters.language"
+      :lang-type="$store.getters.language"
       :width="300"
       :height="300"
+      :no-rotate="false"
     />
   </div>
 </template>
