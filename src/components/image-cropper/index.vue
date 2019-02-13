@@ -226,6 +226,7 @@
           }
         })
       },
+      // 开始裁剪
       startCrop() {
         let _this = this
         let {width, height, ratio, scale, sourceImgMasking, lang} = this
@@ -269,6 +270,7 @@
           _this.step = 2
         }
       },
+      // canvas.ctx.drawImage
       createImg() {
         const {
           mime,
@@ -337,11 +339,11 @@
           scale,
           sourceImgMasking
         } = this
-        const top = `${scale.y + sourceImgMasking.y}px`
         const left = `${scale.x + sourceImgMasking.x}px`
+        const top = `${scale.y + sourceImgMasking.y}px`
         return {
-          top,
           left,
+          top,
           width: `${scale.width}px`,
           height: `${scale.height}px`,
           transform: `rotate(${scale.degree}deg)`
