@@ -16,6 +16,8 @@
     <image-cropper
       :visible.sync="imagecropperShow"
       :langType="$store.getters.language"
+      :width="300"
+      :height="300"
     />
   </div>
 </template>
