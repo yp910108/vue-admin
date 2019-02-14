@@ -18,7 +18,7 @@
       :lang-type="$store.getters.language"
       :width="300"
       :height="300"
-      :no-rotate="false"
+      url="https://httpbin.org/post"
     />
   </div>
 </template>

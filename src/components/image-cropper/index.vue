@@ -1,7 +1,14 @@
 <template>
   <div v-show="visible" class="vue-image-crop-upload">
     <div class="vicp-wrapper">
-      <div class="vicp-close" @click="close">
+      <div
+        class="vicp-close"
+        @click="close"
+        @dragleave="preventDefault"
+        @dragover="preventDefault"
+        @dragenter="preventDefault"
+        @drop="fileChange"
+      >
         <i class="vicp-icon4"/>
       </div>
       <div v-show="step === 1" class="vicp-step1">
@@ -11,7 +18,7 @@
             <i class="vicp-icon1-body"/>
             <i class="vicp-icon1-bottom"/>
           </i>
-          <span v-show="loading !== 1" class="vicp-hint">{{lang.hint}}</span>
+          <span class="vicp-hint">{{lang.hint}}</span>
           <input
             ref="fileInput"
             type="file"
@@ -24,7 +31,7 @@
           <i class="vicp-icon2"/> {{errorMsg}}
         </div>
         <div class="vicp-operate">
-          <a v-ripple>{{lang.btn.off}}</a>
+          <a v-ripple @click="close">{{lang.btn.off}}</a>
         </div>
       </div>
       <div v-if="step === 2" class="vicp-step2">
@@ -42,12 +49,12 @@
             </div>
             <div class="vicp-range">
               <input :value="scale.range" type="range" step="1" min="0" max="100" @input="zoomChange">
-              <i class="vicp-icon5"/>
-              <i class="vicp-icon6"/>
+              <i class="vicp-icon5" @mousedown="startZoomSub" @mouseout="endZoomSub" @mouseup="endZoomSub"/>
+              <i class="vicp-icon6" @mousedown="startZoomAdd" @mouseout="endZoomAdd" @mouseup="endZoomAdd"/>
             </div>
             <div v-if="!noRotate" class="vicp-rotate">
-              <i>↺</i>
-              <i>↻</i>
+              <i @mousedown="startRotateLeft" @mouseout="endRotate" @mouseup="endRotate">↺</i>
+              <i @mousedown="startRotateRight" @mouseout="endRotate" @mouseup="endRotate">↻</i>
             </div>
           </div>
           <div class="vicp-crop-right">
@@ -63,8 +70,12 @@
             </div>
           </div>
         </div>
+        <div class="vicp-operate">
+          <a v-ripple @click="step = 1">{{lang.btn.back}}</a>
+          <a ripple class="vicp-operate-btn" @click="prepareUpload">{{lang.btn.save}}</a>
+        </div>
       </div>
-      <canvas ref="canvas" :width="width" :height="height"/>
+      <canvas ref="canvas" :width="width" :height="height" style="display: none;"/>
     </div>
   </div>
 </template>
@@ -119,6 +130,11 @@
       imgFormat: {
         type: String,
         'default': 'png'
+      },
+      // 上传地址
+      url: {
+        type: String,
+        'default': ''
       }
     },
     directives: {
@@ -135,7 +151,8 @@
           return mimes[tempImgFormat]
         })(),
         step: 1, // 步骤 1选择文件 2剪裁 3上传
-        loading: 0, // 上传状态及进度 0未开始 1正在 2成功 3错误
+        loading: 0, // 上传状态 0未开始 1正在 2成功 3错误
+        progress: 0, // 上传进度
         hasError: false, // 是否有错误信息
         errorMsg: '', // 错误信息
         ratio: this.width / this.height, // 需求图宽高比
@@ -219,7 +236,7 @@
       },
       // file触发change事件
       fileChange(e) {
-        const file = e.target.files[0]
+        const file = e.target.files[0] || e.dataTransfer.files
         if (!file) {
           return
         }
@@ -400,6 +417,112 @@
         scale.height = nHeight
         scale.range = newRange
         this.createImg()
+      },
+      startZoomSub() {
+        const _this = this
+        const {scale} = this
+        scale.zoomSubOn = true
+
+        function zoom() {
+          if (scale.zoomSubOn) {
+            const range = scale.range <= 0 ? 0 : --scale.range
+            _this.zoomImg(range)
+            setTimeout(function() {
+              zoom()
+            }, 60)
+          }
+        }
+
+        zoom()
+      },
+      endZoomSub() {
+        this.scale.zoomSubOn = false
+      },
+      startZoomAdd() {
+        const _this = this
+        const {scale} = this
+        scale.zoomAddOn = true
+
+        function zoom() {
+          if (scale.zoomAddOn) {
+            const range = scale.range >= 100 ? 100 : ++scale.range
+            _this.zoomImg(range)
+            setTimeout(function() {
+              zoom()
+            }, 60)
+          }
+        }
+
+        zoom()
+      },
+      endZoomAdd() {
+        this.scale.zoomAddOn = false
+      },
+      startRotateLeft() {
+        const _this = this
+        const {scale} = this
+        scale.rotateLeft = true
+
+        function rotate() {
+          if (scale.rotateLeft) {
+            const degree = --scale.degree
+            _this.createImg(degree)
+            setTimeout(function() {
+              rotate()
+            }, 60)
+          }
+        }
+
+        rotate()
+      },
+      startRotateRight() {
+        const _this = this
+        const {scale} = this
+        scale.rotateRight = true
+
+        function rotate() {
+          if (scale.rotateRight) {
+            const degree = ++scale.degree
+            _this.createImg(degree)
+            setTimeout(function() {
+              rotate()
+            }, 60)
+          }
+        }
+
+        rotate()
+      },
+      endRotate() {
+        this.scale.rotateLeft = false
+        this.scale.rotateRight = false
+      },
+      prepareUpload() {
+        this.$emit('crop-success', this.createImgUrl)
+        if (typeof this.url === 'string' && this.url) {
+          this.upload()
+        } else {
+          this.close()
+        }
+      },
+      upload() {
+        this.loading = 1
+        this.step = 3
+        console.log('正在上传...')
+        setTimeout(() => {
+          if (Math.random() > 0.5) {
+            this.loading = 2
+            console.log('上传成功')
+          } else {
+            this.loading = 3
+            this.hasError = true
+            this.errorMsg = this.lang.fail
+            console.log('上传失败')
+          }
+        }, 2000)
+      },
+      preventDefault(e) {
+        e.preventDefault()
+        return false
       }
     },
     computed: {
@@ -493,6 +616,13 @@
           $body.removeEventListener('mouseup', this.imgUp)
         }
       }
+    },
+    created() {
+      document.addEventListener('keyup', (e) => {
+        if (this.visible && (e.key === 'Escape' || e.keyCode === 27)) {
+          this.close()
+        }
+      })
     }
   }
 </script>
