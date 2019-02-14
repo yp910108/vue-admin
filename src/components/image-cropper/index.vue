@@ -35,6 +35,8 @@
                 :src="sourceImgUrl"
                 :style="sourceImgStyle"
                 class="vicp-img"
+                @mousedown.prevent="imgStartMove"
+                @mousemove.prevent="imgMove"
               />
               <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-1"/>
               <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-2"/>
@@ -63,7 +65,7 @@
           </div>
         </div>
       </div>
-      <canvas ref="canvas" :width="width" :height="height" style="display: none;"/>
+      <canvas ref="canvas" :width="width" :height="height"/>
     </div>
   </div>
 </template>
@@ -168,6 +170,14 @@
           minHeight: 0,
           naturalWidth: 0, // 原宽
           naturalHeight: 0
+        },
+        // 原图片拖动事件初始值
+        sourceImgMouseDown: {
+          on: false,
+          mX: 0, // 鼠标按下的坐标
+          mY: 0,
+          x: 0, // scale原图坐标
+          y: 0
         }
       }
     },
@@ -299,6 +309,34 @@
         ctx.translate(-this.width / 2, -this.height / 2)
         ctx.drawImage(sourceImg, x / scale, y / scale, width / scale, height / scale)
         this.createImgUrl = canvas.toDataURL(mime)
+      },
+      imgStartMove(e) {
+        let {
+          sourceImgMouseDown: simd,
+          scale
+        } = this
+        simd.mX = e.clientX
+        simd.mY = e.clientY
+        simd.x = scale.x
+        simd.y = scale.y
+        simd.on = true
+      },
+      imgMove(e) {
+        let {
+          sourceImgMouseDown: {
+            on,
+            mX,
+            mY,
+            x,
+            y
+          },
+          scale,
+          sourceImgMasking: sim
+        } = this
+        let nX = e.clientX
+        let nY = e.clientY
+        let dX = nX - mX
+        let dY = nY - mY
       }
     },
     computed: {
