@@ -36,13 +36,12 @@
                 :style="sourceImgStyle"
                 class="vicp-img"
                 @mousedown.prevent="imgStartMove"
-                @mousemove.prevent="imgMove"
               />
               <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-1"/>
               <div :style="sourceImgShadeStyle" class="vicp-img-shade vicp-img-shade-2"/>
             </div>
             <div class="vicp-range">
-              <input :value="scale.range" type="range" step="1" min="0" max="100">
+              <input :value="scale.range" type="range" step="1" min="0" max="100" @input="zoomChange">
               <i class="vicp-icon5"/>
               <i class="vicp-icon6"/>
             </div>
@@ -337,6 +336,70 @@
         let nY = e.clientY
         let dX = nX - mX
         let dY = nY - mY
+        let rX = x + dX
+        let rY = y + dY
+        if (!on) return
+        if (rX > 0) {
+          rX = 0
+        }
+        if (rY > 0) {
+          rY = 0
+        }
+        if (rX < sim.width - scale.width) {
+          rX = sim.width - scale.width
+        }
+        if (rY < sim.height - scale.height) {
+          rY = sim.height - scale.height
+        }
+        scale.x = rX
+        scale.y = rY
+        this.createImg()
+      },
+      imgUp() {
+        this.sourceImgMouseDown.on = false
+      },
+      zoomChange(e) {
+        this.zoomImg(e.target.value)
+      },
+      zoomImg(newRange) {
+        const {
+          sourceImgMasking: sim,
+          scale
+        } = this
+        const {
+          maxWidth,
+          maxHeight,
+          minWidth,
+          minHeight,
+          width,
+          height,
+          x,
+          y
+        } = scale
+        const sWidth = sim.width
+        const sHeight = sim.height
+        const nWidth = minWidth + (maxWidth - minWidth) * newRange / 100
+        const nHeight = minHeight + (maxHeight - minHeight) * newRange / 100
+        let nX = sWidth / 2 - (nWidth / width) * (sWidth / 2 - x)
+        let nY = sHeight / 2 - (nHeight / height) * (sHeight / 2 - y)
+        if (nX > 0) {
+          nX = 0
+        }
+        if (nY > 0) {
+          nY = 0
+        }
+        if (nX < sWidth - nWidth) {
+          nX = sWidth - nWidth
+        }
+        if (nY < sHeight - nHeight) {
+          nY = sHeight - nHeight
+        }
+        scale.x = nX
+        scale.y = nY
+        scale.width = nWidth
+        scale.height = nHeight
+        scale.range = newRange
+        this.createImg()
       }
     },
     computed: {
@@ -416,6 +479,18 @@
         return {
           width: w + 'px',
           height: h + 'px'
+        }
+      }
+    },
+    watch: {
+      visible(newVal) {
+        let $body = document.body
+        if (newVal) {
+          $body.addEventListener('mousemove', this.imgMove)
+          $body.addEventListener('mouseup', this.imgUp)
+        } else {
+          $body.removeEventListener('mousemove', this.imgMove)
+          $body.removeEventListener('mouseup', this.imgUp)
         }
       }
     }
