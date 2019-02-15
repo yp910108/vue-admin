@@ -4,15 +4,18 @@
       <div
         class="vicp-close"
         @click="close"
-        @dragleave="preventDefault"
-        @dragover="preventDefault"
-        @dragenter="preventDefault"
-        @drop="fileChange"
       >
         <i class="vicp-icon4"/>
       </div>
       <div v-show="step === 1" class="vicp-step1">
-        <div class="vicp-drop-area" @click="selectFile">
+        <div
+          class="vicp-drop-area"
+          @click="selectFile"
+          @dragenter="preventDefault"
+          @dragover="preventDefault"
+          @dragleave="preventDefault"
+          @drop.prevent="fileChange"
+        >
           <i class="vicp-icon1">
             <i class="vicp-icon1-arrow"/>
             <i class="vicp-icon1-body"/>
@@ -236,7 +239,8 @@
       },
       // file触发change事件
       fileChange(e) {
-        const file = e.target.files[0] || e.dataTransfer.files
+        const files = e.target.files || e.dataTransfer.files
+        const file = files[0]
         if (!file) {
           return
         }
