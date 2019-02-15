@@ -78,6 +78,24 @@
           <a ripple class="vicp-operate-btn" @click="prepareUpload">{{lang.btn.save}}</a>
         </div>
       </div>
+      <div v-if="step === 3" class="vicp-step3">
+        <div class="vicp-upload">
+          <span v-show="loading === 1" class="vicp-loading">{{lang.loading}}</span>
+          <div class="vicp-progress-wrap">
+            <span v-show="loading === 1" :style="progressStyle" class="vicp-progress"/>
+          </div>
+          <div v-show="loading === 3" class="vicp-error">
+            <i class="vicp-icon2"/>{{errorMsg}}
+          </div>
+          <div v-show="loading === 2" class="vicp-success">
+            <i class="vicp-icon3"/>{{lang.success}}
+          </div>
+        </div>
+        <div class="vicp-operate">
+          <a v-ripple @click="step = 2">{{lang.btn.back}}</a>
+          <a v-ripple @click="close">{{lang.btn.close}}</a>
+        </div>
+      </div>
       <canvas ref="canvas" :width="width" :height="height" style="display: none;"/>
     </div>
   </div>
@@ -208,6 +226,10 @@
       resetError() {
         this.hasError = false
         this.errorMsg = ''
+      },
+      resetUpload() {
+        this.loading = 0
+        this.progress = 0
       },
       // 重置file, 再次选择同一张图片时还会触发change方法
       resetFile(el) {
@@ -509,9 +531,17 @@
         }
       },
       upload() {
+        this.resetError()
+        this.resetUpload()
         this.loading = 1
         this.step = 3
         console.log('正在上传...')
+        setTimeout(() => {
+          this.progress = 20
+        }, 500)
+        setTimeout(() => {
+          this.progress = 60
+        }, 1500)
         setTimeout(() => {
           if (Math.random() > 0.5) {
             this.loading = 2
@@ -606,6 +636,12 @@
         return {
           width: w + 'px',
           height: h + 'px'
+        }
+      },
+      progressStyle() {
+        const {progress} = this
+        return {
+          width: progress + '%'
         }
       }
     },

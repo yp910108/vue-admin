@@ -9,6 +9,15 @@
   }
 }
 
+@keyframes vicp_progress {
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: 40px;
+  }
+}
+
 .vue-image-crop-upload {
   position: fixed;
   z-index: 10000;
@@ -301,12 +310,56 @@
         }
       }
     }
-    .vicp-error {
+    .vicp-step3 {
+      .vicp-upload {
+        border: 1px dashed #ddd;
+        padding: 35px;
+        height: 170px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.03);
+        .vicp-loading {
+          display: block;
+          padding: 15px;
+          line-height: 30px;
+          font-size: 16px;
+          color: #999;
+        }
+        .vicp-progress-wrap {
+          margin-top: 12px;
+          border-radius: 3px;
+          background: rgba(0, 0, 0, 0.08);
+          .vicp-progress {
+            position: relative;
+            display: block;
+            border-radius: 3px;
+            height: 5px;
+            background-color: #4a7;
+            background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+            background-size: 40px 40px;
+            animation: vicp_progress 0.5s linear infinite;
+            transition: width 0.15s linear;
+            &:after {
+              content: "";
+              position: absolute;
+              top: -2px;
+              right: -3px;
+              width: 9px;
+              height: 9px;
+              border-radius: 100%;
+              border: 1px solid rgba(245, 246, 247, 0.7);
+              background-color: #4a7;
+              box-shadow: 0 1px 4px 0 rgba(68, 170, 119, 0.7);
+            }
+          }
+        }
+      }
+    }
+    .vicp-error,
+    .vicp-success {
       margin-top: 5px;
       height: 20px;
       line-height: 20px;
       font-size: 14px;
-      color: #d10;
       text-align: center;
       .vicp-icon2 {
         position: relative;
@@ -331,6 +384,31 @@
           transform: rotate(-45deg);
         }
       }
+      .vicp-icon3 {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 20px;
+        height: 20px;
+        &:after {
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 7px;
+          transform: rotate(45deg);
+          width: 6px;
+          height: 10px;
+          border-width: 0 2px 2px 0;
+          border-color: #4a7;
+          border-style: solid;
+        }
+      }
+    }
+    .vicp-error {
+      color: #d10;
+    }
+    .vicp-success {
+      color: #4a7;
     }
     .vicp-operate {
       position: absolute;

@@ -18,7 +18,8 @@
       :lang-type="$store.getters.language"
       :width="300"
       :height="300"
-      url="https://httpbin.org/post"
+      url="https://xxx"
+      @crop-success="cropSuccess"
     />
   </div>
 </template>
@@ -36,6 +37,11 @@
       return {
         image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191',
         imagecropperShow: false
+      }
+    },
+    methods: {
+      cropSuccess(url) {
+        this.image = url
       }
     }
   }
