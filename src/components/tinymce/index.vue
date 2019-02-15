@@ -75,7 +75,9 @@
             if (_this.value) {
               editor.setContent(_this.value)
             }
+            this.hasInit = true
             editor.on('NodeChange Change KeyUp SetContent', () => {
+              this.hasChange = true
               _this.$emit('input', editor.getContent())
             })
           },
@@ -118,7 +120,11 @@
     },
     watch: {
       value(newVal) {
-        window.tinymce.get(this.id).setContent(newVal || '')
+        if (!this.hasChange && this.hasInit) {
+          this.$nextTick(() => {
+            window.tinymce.get(this.id).setContent(newVal || '')
+          })
+        }
       }
     },
     mounted() {
