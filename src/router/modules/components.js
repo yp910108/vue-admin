@@ -69,6 +69,14 @@ const componentsRouter = {
       }
     },
     {
+      path: 'count-to',
+      component: () => import('@/views/components-demo/count-to'),
+      name: 'CountToDemo',
+      meta: {
+        title: 'countTo'
+      }
+    },
+    {
       path: 'back-to-top',
       component: () => import('@/views/components-demo/back-to-top'),
       name: 'BackToTopDemo',
