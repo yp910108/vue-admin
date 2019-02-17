@@ -67,6 +67,14 @@ const componentsRouter = {
       meta: {
         title: 'sticky'
       }
+    },
+    {
+      path: 'back-to-top',
+      component: () => import('@/views/components-demo/back-to-top'),
+      name: 'BackToTopDemo',
+      meta: {
+        title: 'backToTop'
+      }
     }
   ]
 }
