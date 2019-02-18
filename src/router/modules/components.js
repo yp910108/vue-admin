@@ -91,6 +91,14 @@ const componentsRouter = {
       meta: {
         title: 'backToTop'
       }
+    },
+    {
+      path: 'drag-dialog',
+      component: () => import('@/views/components-demo/drag-dialog'),
+      name: 'DragDialogDemo',
+      meta: {
+        title: 'dragDialog'
+      }
     }
   ]
 }
