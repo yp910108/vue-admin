@@ -36,6 +36,7 @@
       position: absolute;
       left: 0;
       top: 50%;
+      margin: -3px 0 0 0;
       width: 100%;
       height: 6px;
       background: #3888fa;

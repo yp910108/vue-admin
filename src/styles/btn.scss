@@ -1,0 +1,73 @@
+@mixin colorBtn($color) {
+  background: $color;
+  &:hover {
+    color: $color;
+    &:before,
+    &:after {
+      background: $color;
+    }
+  }
+}
+
+.pan-btn {
+  position: relative;
+  display: inline-block;
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 14px 36px;
+  color: #fff;
+  transition: 600ms ease all;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    width: 0;
+    transition: 400ms ease all;
+  }
+  &:before {
+    right: 0;
+    top: 0;
+  }
+  &:after {
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.pan-btn:hover {
+  background: #fff;
+  &:before,
+  &:after {
+    width: 100%;
+    transition: 600ms ease all;
+  }
+}
+
+.blue-btn {
+  @include colorBtn($blue)
+}
+
+.light-blue-btn {
+  @include colorBtn($light-blue)
+}
+
+.red-btn {
+  @include colorBtn($red)
+}
+
+.pink-btn {
+  @include colorBtn($pink)
+}
+
+.green-btn {
+  @include colorBtn($green)
+}
+
+.tiffany-btn {
+  @include colorBtn($tiffany)
+}
+
+.yellow-btn {
+  @include colorBtn($yellow)
+}

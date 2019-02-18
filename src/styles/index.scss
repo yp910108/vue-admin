@@ -1,5 +1,7 @@
+@import "./variables.scss";
 @import "./element-ui.scss";
 @import "./transition.scss";
+@import "./btn.scss";
 
 html {
   box-sizing: border-box;
@@ -45,6 +47,12 @@ div:focus {
   }
 }
 
+.no-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .no-padding {
   padding: 0px !important;
 }
@@ -86,6 +94,10 @@ code {
 .components-container {
   margin: 30px 50px;
   position: relative;
+}
+
+.text-center {
+  text-align: center
 }
 
 .link-type,
