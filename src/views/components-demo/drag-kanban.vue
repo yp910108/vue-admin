@@ -1,6 +1,6 @@
 <template>
   <div class="components-container">
-    <el-row :gutter="20">
+    <el-row :gutter="30">
       <el-col :span="8">
         <kanban :key="1" :list="list1" :options="options" class="kanban todo" header-text="Todo"/>
       </el-col>
