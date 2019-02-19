@@ -107,6 +107,22 @@ const componentsRouter = {
       meta: {
         title: 'dragSelect'
       }
+    },
+    {
+      path: 'dnd-list',
+      component: () => import('@/views/components-demo/dnd-list'),
+      name: 'DndListDemo',
+      meta: {
+        title: 'dndList'
+      }
+    },
+    {
+      path: 'drag-kanban',
+      component: () => import('@/views/components-demo/drag-kanban'),
+      name: 'DragKanbanDemo',
+      meta: {
+        title: 'dragKanban'
+      }
     }
   ]
 }
