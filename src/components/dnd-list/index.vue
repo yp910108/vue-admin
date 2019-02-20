@@ -2,7 +2,7 @@
   <div class="dnd-list clearfix">
     <div :style="{width: width1}" class="dnd-list-list">
       <h3>{{list1Title}}</h3>
-      <draggable class="drag-area">
+      <draggable :list="list1" :options="{group:'article'}" class="drag-area">
         <div v-for="element in list1" :key="element.id" class="list-complete-item">
           <div class="list-complete-item-handle">{{element.id}}[{{element.author}}] {{element.title}}</div>
           <div style="position:absolute; right:0px;">
@@ -15,7 +15,7 @@
     </div>
     <div :style="{width:width2}" class="dnd-list-list">
       <h3>{{list2Title}}</h3>
-      <draggable class="drag-area">
+      <draggable :list="list2" :options="{group:'article'}" class="drag-area">
         <div v-for="element in list2" :key="element.id" class="list-complete-item">
           <div class="list-complete-item-handle2" @click="pushEle(element)">
             {{element.id}} [{{element.author}}] {{element.title}}
