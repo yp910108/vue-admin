@@ -5,6 +5,7 @@ import Layout from '@/views/layout/layout'
 /* Router Modules */
 import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
+import nestedRouter from './modules/nested'
 
 Vue.use(Router)
 
@@ -163,6 +164,7 @@ export const asyncRouterMap = [
   /** When your routing table is too long, you can split it into small modules **/
   componentsRouter,
   chartsRouter,
+  nestedRouter,
   {
     path: '/error',
     component: Layout,

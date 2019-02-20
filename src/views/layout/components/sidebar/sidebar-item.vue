@@ -33,6 +33,7 @@
           :item="child"
           :is-nest="true"
           :base-path="resolvePath(child.path)"
+          class="nest-menu"
         />
         <app-link
           v-else

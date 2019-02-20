@@ -30,6 +30,12 @@
         background-color: #001528 !important;
       }
     }
+    .nest-menu .el-submenu .el-submenu__title {
+      background: #1f2d3d !important;
+      &:hover {
+        background-color: #001528 !important;
+      }
+    }
 
     a {
       display: block;
@@ -43,8 +49,8 @@
     .el-scrollbar__bar.is-horizontal {
       display: none;
     }
-    .is-active > .el-submenu__title{
-      color: #f4f4f5!important;
+    .is-active > .el-submenu__title {
+      color: #f4f4f5 !important;
     }
   }
   // 主体区域
