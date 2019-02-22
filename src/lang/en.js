@@ -106,5 +106,31 @@ export default {
     backToTopTips1: 'When the page is scrolled to the specified position, the Back to Top button appears in the lower right corner',
     backToTopTips2: 'You can customize the style of the button, show / hide, height of appearance, height of the return. If you need a text prompt, you can use element-ui el-tooltip elements externally',
     imageUploadTips: 'Since I was using only the vue@1 version, and it is not compatible with mockjs at the moment, I modified it myself, and if you are going to use it, it is better to use official version.'
+  },
+  table: {
+    dynamicTips1: 'Fixed header, sorted by header order',
+    dynamicTips2: 'Not fixed header, sorted by click order',
+    dragTips1: 'The default order',
+    dragTips2: 'The after dragging order',
+    title: 'Title',
+    importance: 'Imp',
+    type: 'Type',
+    remark: 'Remark',
+    search: 'Search',
+    add: 'Add',
+    export: 'Export',
+    reviewer: 'reviewer',
+    id: 'ID',
+    date: 'Date',
+    author: 'Author',
+    readings: 'Readings',
+    status: 'Status',
+    actions: 'Actions',
+    edit: 'Edit',
+    publish: 'Publish',
+    draft: 'Draft',
+    delete: 'Delete',
+    cancel: 'Cancel',
+    confirm: 'Confirm'
   }
 }
