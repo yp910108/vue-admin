@@ -45,5 +45,28 @@ export default {
       total: mockList.length,
       items: pageList
     }
+  },
+  getArticle(config) {
+    const {id} = param2Obj(config.url)
+    for (const article of List) {
+      if (article.id === +id) {
+        return article
+      }
+    }
+  },
+  getPv() {
+    return {
+      pvData: [{key: 'PC', pv: 1024}, {key: 'mobile', pv: 1024}, {key: 'ios', pv: 1024}, {key: 'android', pv: 1024}]
+    }
+  },
+  createArticle() {
+    return {
+      data: 'success'
+    }
+  },
+  updateArticle() {
+    return {
+      data: 'success'
+    }
   }
 }
